@@ -1,5 +1,5 @@
 /* FINAL EDITORIAL OVERRIDES
-   Keep the UI quiet: 1px borders, no shadows, no heavy selected outlines. */
+   Keep the UI quiet: thin controls, no shadows, and no decorative container borders. */
 :root {
   --final-cream: #f4f5e6;
   --final-surface: #f8f8ef;
@@ -10,7 +10,7 @@
   --final-muted: #777a6c;
 }
 
-/* ---------- GLOBAL TYPOGRAPHY ---------- */
+/* ---------- ONE TYPOGRAPHY SYSTEM ---------- */
 html, body, #root,
 button, input, select, textarea,
 label, a, p, span, div, li, th, td, strong, small,
@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: Arial, Helvetica, sans-serif !important;
 }
 
-/* ---------- GLOBAL BORDER RULE ---------- */
+/* ---------- GLOBAL CONTROLS ---------- */
 button,
 .btn-primary,
 .btn-secondary,
@@ -43,19 +43,13 @@ textarea,
 .hero-art-card,
 .checkout-page .section,
 .checkout-page .checkout-section,
-.checkout-page .order-summary,
-.track-page .order-card,
-.track-page .container > div,
-.track-page [style*="var(--border-thick)"],
-.track-page [style*="2px solid"],
-.track-page [style*="borderBottom"] {
+.checkout-page .order-summary {
   border-width: 1px !important;
   border-style: solid !important;
   border-color: var(--final-line) !important;
   box-shadow: none !important;
 }
 
-/* Header and icon controls should not have box borders. */
 .header-icon-btn,
 .icon-btn,
 .mobile-hamburger,
@@ -64,7 +58,6 @@ textarea,
   box-shadow: none !important;
 }
 
-/* Never use the old chunky shadow/offset interaction. */
 button,
 .btn-primary,
 .btn-secondary,
@@ -88,7 +81,7 @@ button:hover,
   transform: none !important;
 }
 
-/* ---------- PDP SIZE + COLOUR: RESTORE THE SIMPLE PREVIOUS LOOK ---------- */
+/* ---------- PDP SIZE + COLOUR ---------- */
 .product-detail-page .pdp-color-option,
 .product-detail-page .pdp-size-option {
   background: var(--final-surface) !important;
@@ -143,33 +136,43 @@ button:hover,
   box-shadow: none !important;
 }
 
-/* ---------- TRACK PAGE ---------- */
+/* ---------- TRACK PAGE: DO NOT BORDER GENERIC CONTAINERS ---------- */
+/* The previous rule incorrectly matched every nested div, including the
+   title/header row and inner layout wrappers. Those wrappers stay borderless. */
 .track-page .container > div,
 .track-page .container > div > div,
-.track-page [style*="var(--border-thick)"],
-.track-page [style*="2px solid #141414"] {
-  border-width: 1px !important;
-  border-style: solid !important;
-  border-color: var(--final-line) !important;
+.track-page .container > div > div > div,
+.track-page .container > div > div > div > div {
+  border: 0 !important;
   box-shadow: none !important;
 }
 
-.track-page [style*="borderBottom"] {
-  border-bottom: 1px solid var(--final-line) !important;
+/* Keep only the actual order card as a card. */
+.track-page .order-card {
+  border: 1px solid var(--final-line) !important;
+  box-shadow: none !important;
 }
 
-/* Timeline circles: 1px, simple, no chunky outline. */
+/* Remove legacy thick/inline borders from tracking wrappers. */
+.track-page [style*="var(--border-thick)"],
+.track-page [style*="2px solid"],
+.track-page [style*="borderBottom"] {
+  border-width: 0 !important;
+  border-style: none !important;
+  box-shadow: none !important;
+}
+
+/* Timeline circles stay simple and visible. */
 .track-page [style*="borderRadius: '50%'"] {
   border: 1px solid var(--final-ink) !important;
   box-shadow: none !important;
 }
 
-/* Active timeline step is soft olive, not a heavy highlighted block. */
 .track-page [style*="backgroundColor: isCompleted"] {
   box-shadow: none !important;
 }
 
-/* Quiet status badge. */
+/* Quiet processing/status badge. */
 .track-page .status-badge {
   background: var(--final-olive-soft) !important;
   color: var(--final-olive) !important;
@@ -219,11 +222,16 @@ textarea:focus,
   box-shadow: none !important;
 }
 
-/* ---------- MOBILE ---------- */
 @media (max-width: 700px) {
   .track-page .container > div,
-  .checkout-page .container > div {
-    border-width: 1px !important;
+  .track-page .container > div > div,
+  .track-page .container > div > div > div,
+  .track-page .container > div > div > div > div {
+    border: 0 !important;
+  }
+
+  .track-page .order-card {
+    border: 1px solid var(--final-line) !important;
   }
 
   .product-detail-page .pdp-color-option.selected,
