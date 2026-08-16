@@ -11,6 +11,7 @@ import './styles/pdp-controls.css';
 import './styles/ui-simple.css';
 import './styles/global-simple-ui.css';
 import './styles/final-editorial-overrides.css';
+import './styles/responsive.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
