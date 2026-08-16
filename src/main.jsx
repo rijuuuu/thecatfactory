@@ -6,6 +6,7 @@ import './styles/admin.css';
 import './styles/reference.css';
 import './styles/reference-fixes.css';
 import './styles/reviews.css';
+import './styles/typography.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
