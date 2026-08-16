@@ -1,0 +1,128 @@
+/* Unified typography override: one clean geometric sans family with multiple weights. */
+:root {
+  --font-display: Arial, Helvetica, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-mono: Arial, Helvetica, sans-serif;
+}
+
+html, body, button, input, select, textarea {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+body {
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, h6,
+.hero-title,
+.editorial-hero-content h1,
+.editorial-statement h2,
+.editorial-drop h2,
+.drop-copy h2,
+.editorial-section-head h2,
+.editorial-newsletter h2,
+.section-header h2,
+.product-title,
+.brand-wordmark,
+.admin-topbar h1,
+.sidebar-brand h2,
+.stat-card-value {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.editorial-hero-content h1,
+.editorial-statement h2,
+.editorial-drop h2,
+.drop-copy h2,
+.editorial-section-head h2,
+.editorial-newsletter h2,
+.section-header h2 {
+  font-weight: 800 !important;
+  letter-spacing: -0.045em !important;
+}
+
+.brand-wordmark {
+  font-weight: 800 !important;
+  letter-spacing: 0.14em !important;
+}
+
+.nav-link,
+.top-bar-promo,
+.editorial-eyebrow,
+.editorial-announcement,
+.editorial-view-all,
+.editorial-btn,
+.text-link,
+.card-tag,
+.product-category,
+.product-price-row,
+.current-price,
+.mrp-price,
+.discount-tag,
+.sidebar-link,
+.sidebar-brand span,
+.stat-card-title,
+.admin-search-input,
+.admin-table th,
+.status-badge,
+.admin-user-name,
+.admin-user-role {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.nav-link,
+.editorial-eyebrow,
+.editorial-announcement,
+.editorial-view-all,
+.editorial-btn,
+.text-link,
+.card-tag,
+.stat-card-title,
+.admin-table th,
+.status-badge {
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+}
+
+.editorial-hero-content p,
+.editorial-statement p,
+.editorial-drop p,
+.editorial-drop-copy,
+.editorial-newsletter p,
+.product-category,
+.product-card-body,
+.admin-table,
+.admin-content {
+  font-weight: 400;
+}
+
+.product-title {
+  font-weight: 600 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.current-price,
+.stat-card-value {
+  font-weight: 700 !important;
+}
+
+.btn-primary,
+.btn-secondary,
+.add-to-cart-btn,
+.header-icon-btn,
+.icon-btn {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+button, input, select, textarea {
+  font-weight: 400;
+}
+
+@media (max-width: 700px) {
+  .editorial-hero-content h1 {
+    letter-spacing: -0.055em !important;
+  }
+}
