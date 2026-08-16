@@ -10,6 +10,7 @@ import './styles/typography.css';
 import './styles/pdp-controls.css';
 import './styles/ui-simple.css';
 import './styles/global-simple-ui.css';
+import './styles/final-editorial-overrides.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
