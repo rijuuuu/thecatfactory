@@ -7,8 +7,9 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'https://github.com/rijuuuu/thecatfactory',
-        changeOrigin: true
+        target: 'https://thecatfactorybackend.onrender.com',
+        changeOrigin: true,
+        secure: true
       }
     }
   }
