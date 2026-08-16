@@ -1,0 +1,108 @@
+/* Minimal PDP controls - aligned with the editorial cream/olive UI. */
+.product-detail-page .form-label {
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: var(--color-ink-black) !important;
+  font-size: 0.9rem !important;
+  font-weight: 650 !important;
+  letter-spacing: 0 !important;
+}
+
+.product-detail-page .form-label strong {
+  font-weight: 650 !important;
+}
+
+.product-detail-page .pdp-color-option {
+  background: var(--color-warehouse-cream) !important;
+  color: var(--color-ink-black) !important;
+  border: 1px solid var(--color-hairline) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 0.86rem !important;
+  font-weight: 550 !important;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+
+.product-detail-page .pdp-color-option.selected {
+  background: #e7eadb !important;
+  border: 1px solid var(--color-rust) !important;
+}
+
+.product-detail-page .pdp-size-option {
+  background: var(--color-warehouse-cream) !important;
+  color: var(--color-ink-black) !important;
+  border: 1px solid var(--color-hairline) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+
+.product-detail-page .pdp-size-option.selected {
+  background: #dfe5d3 !important;
+  border: 1px solid var(--color-rust) !important;
+}
+
+.product-detail-page .pdp-quantity {
+  height: 48px !important;
+  border: 1px solid var(--color-hairline) !important;
+  background: var(--color-warehouse-cream) !important;
+  box-shadow: none !important;
+}
+
+.product-detail-page .pdp-quantity button {
+  width: 40px !important;
+  height: 46px !important;
+  color: var(--color-ink-black) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 1.15rem !important;
+  font-weight: 500 !important;
+}
+
+.product-detail-page .pdp-quantity span {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+}
+
+.product-detail-page #pdp-add-to-cart-btn {
+  background: var(--color-factory-yellow) !important;
+  color: var(--color-ink-black) !important;
+  border: 1px solid var(--color-factory-yellow) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 0.92rem !important;
+  font-weight: 650 !important;
+  letter-spacing: 0.08em !important;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+
+.product-detail-page #pdp-add-to-cart-btn:hover {
+  background: var(--color-factory-yellow-hover) !important;
+  border-color: var(--color-factory-yellow-hover) !important;
+  transform: none !important;
+}
+
+.product-detail-page .oversized-fit-guide {
+  font-family: Arial, Helvetica, sans-serif !important;
+  color: var(--color-rust) !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em;
+}
+
+.product-detail-page .pdp-guarantees {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 450 !important;
+}
+
+@media (max-width: 700px) {
+  .product-detail-page #pdp-add-to-cart-btn {
+    font-size: 0.82rem !important;
+    letter-spacing: 0.04em !important;
+  }
+}
