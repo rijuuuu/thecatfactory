@@ -1,0 +1,226 @@
+/* Global final UI normalization: one typography system, subtle controls, no legacy visual noise. */
+:root {
+  --ui-font: Arial, Helvetica, sans-serif;
+  --ui-cream: #f4f5e6;
+  --ui-surface: #f8f8ef;
+  --ui-black: #10110f;
+  --ui-olive: #718565;
+  --ui-olive-soft: #e7eadb;
+  --ui-line: #d8dacd;
+  --ui-muted: #777a6c;
+}
+
+html, body, #root,
+button, input, select, textarea,
+label, a, p, span, div, li, th, td, strong, small {
+  font-family: var(--ui-font) !important;
+}
+
+body {
+  background: var(--ui-cream) !important;
+  color: var(--ui-black) !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ui-font) !important;
+  color: var(--ui-black) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  text-transform: none;
+}
+
+/* Remove legacy mono/condensed feel everywhere, including inline styled elements. */
+[style*="JetBrains Mono"],
+[style*="Archivo"],
+[style*="Anton"] {
+  font-family: var(--ui-font) !important;
+}
+
+/* Global buttons */
+button,
+.btn-primary,
+.btn-secondary,
+.add-to-cart-btn,
+input[type="button"],
+input[type="submit"] {
+  font-family: var(--ui-font) !important;
+  font-weight: 600 !important;
+  border: 1px solid var(--ui-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  transition: background-color .18s ease, color .18s ease, border-color .18s ease;
+}
+
+button:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.add-to-cart-btn:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.btn-primary,
+.add-to-cart-btn {
+  background: var(--ui-olive) !important;
+  border-color: var(--ui-olive) !important;
+  color: #fff !important;
+}
+
+.btn-secondary {
+  background: transparent !important;
+  color: var(--ui-black) !important;
+}
+
+/* Inputs, selects and forms */
+input,
+select,
+textarea,
+.form-input,
+.form-select {
+  font-family: var(--ui-font) !important;
+  background: var(--ui-surface) !important;
+  color: var(--ui-black) !important;
+  border: 1px solid var(--ui-line) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.form-input:focus,
+.form-select:focus {
+  outline: none !important;
+  border-color: var(--ui-olive) !important;
+  box-shadow: 0 0 0 2px rgba(113,133,101,.12) !important;
+}
+
+.form-label,
+label {
+  font-family: var(--ui-font) !important;
+  color: var(--ui-black) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+}
+
+/* Selected option states: subtle, flat, no heavy outlines. */
+.product-detail-page .pdp-color-option.selected,
+.product-detail-page .pdp-size-option.selected,
+.product-detail-page button[aria-pressed="true"],
+.checkout-page button[aria-pressed="true"] {
+  background: var(--ui-olive-soft) !important;
+  color: var(--ui-black) !important;
+  border: 1px solid var(--ui-olive) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Checkout/payment selectors */
+.checkout-page button {
+  background: var(--ui-surface) !important;
+  color: var(--ui-black) !important;
+  font-family: var(--ui-font) !important;
+}
+
+.checkout-page button:hover {
+  background: #f1f2e9 !important;
+}
+
+.checkout-page button[style*="var(--color-factory-yellow)"] {
+  background: var(--ui-olive-soft) !important;
+  border-color: var(--ui-olive) !important;
+}
+
+/* Summary/order cards */
+.checkout-page,
+.track-page {
+  font-family: var(--ui-font) !important;
+}
+
+.checkout-page [style*="JetBrains Mono"],
+.track-page [style*="JetBrains Mono"] {
+  font-family: var(--ui-font) !important;
+}
+
+/* Track stepper */
+.track-page .track-step,
+.track-page [style*="borderRadius: '50%'"] {
+  font-family: var(--ui-font) !important;
+}
+
+/* Status badges: quiet olive / neutral instead of bright legacy colors where possible. */
+.status-badge {
+  font-family: var(--ui-font) !important;
+  border: 1px solid var(--ui-olive) !important;
+  box-shadow: none !important;
+}
+
+/* Search bar */
+.editorial-search,
+.editorial-search form {
+  font-family: var(--ui-font) !important;
+}
+
+.editorial-search form {
+  max-width: 760px;
+  margin: 14px auto 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(248,248,239,.96);
+  border: 1px solid var(--ui-line);
+  padding: 10px 14px;
+}
+
+.editorial-search form:focus-within {
+  border-color: var(--ui-olive);
+}
+
+.editorial-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 8px 0;
+  font-family: var(--ui-font) !important;
+  font-size: 16px;
+}
+
+.editorial-search button {
+  width: 36px;
+  height: 36px;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--ui-black);
+}
+
+/* Header icon buttons stay minimal. */
+.header-icon-btn,
+.icon-btn {
+  font-family: var(--ui-font) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Remove shadows from cards and utility panels in storefront/checkout/track. */
+.product-card,
+.hero-art-card,
+.checkout-page > *,
+.checkout-page .container > *,
+.track-page .container > *,
+.track-page .container > div > div,
+.admin-modal,
+.stat-card,
+.table-container {
+  box-shadow: none !important;
+}
+
+@media (max-width: 700px) {
+  .editorial-search form {
+    margin: 10px 12px 14px;
+    padding: 8px 12px;
+  }
+}
