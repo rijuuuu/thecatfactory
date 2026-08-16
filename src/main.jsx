@@ -8,6 +8,7 @@ import './styles/reference-fixes.css';
 import './styles/reviews.css';
 import './styles/typography.css';
 import './styles/pdp-controls.css';
+import './styles/product-controls.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
