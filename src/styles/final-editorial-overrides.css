@@ -1,0 +1,233 @@
+/* FINAL EDITORIAL OVERRIDES
+   Keep the UI quiet: 1px borders, no shadows, no heavy selected outlines. */
+:root {
+  --final-cream: #f4f5e6;
+  --final-surface: #f8f8ef;
+  --final-ink: #141512;
+  --final-olive: #788a65;
+  --final-olive-soft: #e7eadb;
+  --final-line: #d8dacd;
+  --final-muted: #777a6c;
+}
+
+/* ---------- GLOBAL TYPOGRAPHY ---------- */
+html, body, #root,
+button, input, select, textarea,
+label, a, p, span, div, li, th, td, strong, small,
+h1, h2, h3, h4, h5, h6 {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+[style*="JetBrains Mono"],
+[style*="Archivo"],
+[style*="Anton"] {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* ---------- GLOBAL BORDER RULE ---------- */
+button,
+.btn-primary,
+.btn-secondary,
+.add-to-cart-btn,
+.form-input,
+.form-select,
+.form-textarea,
+input,
+select,
+textarea,
+.payment-method-btn,
+.payment-option,
+.size-option,
+.color-option,
+.product-card,
+.hero-art-card,
+.checkout-page .section,
+.checkout-page .checkout-section,
+.checkout-page .order-summary,
+.track-page .order-card,
+.track-page .container > div,
+.track-page [style*="var(--border-thick)"],
+.track-page [style*="2px solid"],
+.track-page [style*="borderBottom"] {
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: var(--final-line) !important;
+  box-shadow: none !important;
+}
+
+/* Header and icon controls should not have box borders. */
+.header-icon-btn,
+.icon-btn,
+.mobile-hamburger,
+.editorial-search button {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Never use the old chunky shadow/offset interaction. */
+button,
+.btn-primary,
+.btn-secondary,
+.add-to-cart-btn,
+.product-card,
+.icon-btn,
+.header-icon-btn {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+button:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.add-to-cart-btn:hover,
+.product-card:hover,
+.icon-btn:hover,
+.header-icon-btn:hover {
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* ---------- PDP SIZE + COLOUR: RESTORE THE SIMPLE PREVIOUS LOOK ---------- */
+.product-detail-page .pdp-color-option,
+.product-detail-page .pdp-size-option {
+  background: var(--final-surface) !important;
+  color: var(--final-ink) !important;
+  border: 1px solid var(--final-line) !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.product-detail-page .pdp-color-option.selected,
+.product-detail-page .pdp-size-option.selected {
+  background: var(--final-olive-soft) !important;
+  color: var(--final-ink) !important;
+  border: 1px solid var(--final-olive) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.product-detail-page #pdp-add-to-cart-btn {
+  background: var(--final-olive) !important;
+  color: var(--final-ink) !important;
+  border: 1px solid var(--final-olive) !important;
+  box-shadow: none !important;
+}
+
+/* ---------- CHECKOUT PAYMENT BUTTONS ---------- */
+.checkout-page button,
+.checkout-page button[type="button"] {
+  background: var(--final-surface) !important;
+  color: var(--final-ink) !important;
+  border: 1px solid var(--final-line) !important;
+  box-shadow: none !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.checkout-page button:hover,
+.checkout-page button[type="button"]:hover {
+  background: var(--final-olive-soft) !important;
+  border-color: var(--final-olive) !important;
+  box-shadow: none !important;
+}
+
+.checkout-page button[aria-pressed="true"],
+.checkout-page .selected,
+.checkout-page .payment-method-btn.selected,
+.checkout-page .payment-option.selected {
+  background: var(--final-olive-soft) !important;
+  color: var(--final-ink) !important;
+  border: 1px solid var(--final-olive) !important;
+  box-shadow: none !important;
+}
+
+/* ---------- TRACK PAGE ---------- */
+.track-page .container > div,
+.track-page .container > div > div,
+.track-page [style*="var(--border-thick)"],
+.track-page [style*="2px solid #141414"] {
+  border-width: 1px !important;
+  border-style: solid !important;
+  border-color: var(--final-line) !important;
+  box-shadow: none !important;
+}
+
+.track-page [style*="borderBottom"] {
+  border-bottom: 1px solid var(--final-line) !important;
+}
+
+/* Timeline circles: 1px, simple, no chunky outline. */
+.track-page [style*="borderRadius: '50%'"] {
+  border: 1px solid var(--final-ink) !important;
+  box-shadow: none !important;
+}
+
+/* Active timeline step is soft olive, not a heavy highlighted block. */
+.track-page [style*="backgroundColor: isCompleted"] {
+  box-shadow: none !important;
+}
+
+/* Quiet status badge. */
+.track-page .status-badge {
+  background: var(--final-olive-soft) !important;
+  color: var(--final-olive) !important;
+  border: 1px solid var(--final-olive) !important;
+  box-shadow: none !important;
+}
+
+/* ---------- SEARCH ---------- */
+.editorial-search {
+  border-top: 1px solid var(--final-line) !important;
+  border-bottom: 1px solid var(--final-line) !important;
+  background: var(--final-cream) !important;
+}
+
+.editorial-search form {
+  border: 1px solid var(--final-line) !important;
+  background: var(--final-surface) !important;
+  box-shadow: none !important;
+}
+
+.editorial-search form:focus-within {
+  border-color: var(--final-olive) !important;
+  box-shadow: none !important;
+}
+
+/* ---------- GENERIC FORMS ---------- */
+input,
+select,
+textarea,
+.form-input,
+.form-select,
+.form-textarea {
+  border: 1px solid var(--final-line) !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: var(--final-surface) !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none !important;
+  border-color: var(--final-olive) !important;
+  box-shadow: none !important;
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width: 700px) {
+  .track-page .container > div,
+  .checkout-page .container > div {
+    border-width: 1px !important;
+  }
+
+  .product-detail-page .pdp-color-option.selected,
+  .product-detail-page .pdp-size-option.selected {
+    border-width: 1px !important;
+  }
+}
