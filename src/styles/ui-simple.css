@@ -1,0 +1,165 @@
+/* Global simple UI pass: thin borders, no shadows, soft cream/olive states, clean search. */
+:root {
+  --ui-cream: #f4f4e8;
+  --ui-surface: #f7f7ed;
+  --ui-olive: #788a65;
+  --ui-olive-soft: #e7eadb;
+  --ui-olive-dark: #667754;
+  --ui-ink: #151612;
+  --ui-line: #d9d9cc;
+  --ui-muted: #777970;
+}
+
+button,
+.btn-primary,
+.btn-secondary,
+.add-to-cart-btn,
+.form-input,
+.form-select,
+.form-textarea,
+.payment-method-btn,
+.icon-btn,
+.header-icon-btn,
+.search-input,
+.search-bar,
+input,
+select,
+textarea {
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.btn-primary,
+.btn-secondary,
+.add-to-cart-btn {
+  border: 1px solid var(--ui-line) !important;
+  background: var(--ui-surface) !important;
+  color: var(--ui-ink) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover,
+.add-to-cart-btn:hover {
+  background: var(--ui-olive-soft) !important;
+  border-color: var(--ui-olive) !important;
+  transform: none !important;
+}
+
+/* Generic selected/active controls */
+button[aria-pressed="true"],
+button.selected,
+.payment-method-btn.selected,
+.payment-option.selected,
+.size-option.selected,
+.color-option.selected,
+.option-selected {
+  background: var(--ui-olive-soft) !important;
+  border: 1px solid var(--ui-olive) !important;
+  color: var(--ui-ink) !important;
+  box-shadow: none !important;
+}
+
+/* Checkout payment tiles */
+.checkout-page button[type="button"] {
+  background: var(--ui-surface) !important;
+  color: var(--ui-ink) !important;
+  border: 1px solid var(--ui-line) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-weight: 600 !important;
+}
+
+.checkout-page button[type="button"]:hover {
+  background: #f1f1e7 !important;
+  border-color: var(--ui-olive) !important;
+}
+
+.checkout-page button[type="button"][style*="2px solid"] {
+  border: 1px solid var(--ui-olive) !important;
+  background: var(--ui-olive-soft) !important;
+}
+
+/* Checkout fields */
+.checkout-page .form-input,
+.checkout-page .form-select {
+  background: var(--ui-surface) !important;
+  border: 1px solid var(--ui-line) !important;
+  color: var(--ui-ink) !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.checkout-page .form-input:focus,
+.checkout-page .form-select:focus {
+  border-color: var(--ui-olive) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 2px rgba(120,138,101,.12) !important;
+}
+
+/* Search */
+.editorial-search {
+  border-top: 1px solid var(--ui-line) !important;
+  border-bottom: 1px solid var(--ui-line) !important;
+  background: rgba(247,247,237,.98) !important;
+  padding: 12px 0 !important;
+}
+
+.editorial-search form {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--ui-line);
+  background: var(--ui-surface);
+  padding: 0 12px;
+}
+
+.editorial-search form:focus-within {
+  border-color: var(--ui-olive);
+  box-shadow: none !important;
+}
+
+.editorial-search input {
+  flex: 1;
+  min-width: 0;
+  border: 0 !important;
+  background: transparent !important;
+  color: var(--ui-ink);
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 15px;
+  padding: 13px 4px;
+  outline: none !important;
+}
+
+.editorial-search input::placeholder {
+  color: var(--ui-muted);
+}
+
+.editorial-search button {
+  color: var(--ui-muted);
+  padding: 6px;
+}
+
+.editorial-search button:hover {
+  color: var(--ui-ink);
+  background: transparent !important;
+}
+
+/* Admin/login cleanup */
+.admin-login-shell,
+.admin-login-panel {
+  box-shadow: none !important;
+}
+
+@media (max-width: 700px) {
+  .editorial-search form {
+    max-width: none;
+    margin: 0 16px;
+  }
+
+  .checkout-page button[type="button"] {
+    font-size: 14px;
+  }
+}
