@@ -1,0 +1,7 @@
+.editorial-review-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+.editorial-review-card { border: 1px solid rgba(16,17,15,.12); padding: 30px; min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; background: transparent; }
+.editorial-stars { color: #718565; display: flex; gap: 2px; margin-bottom: 20px; }
+.editorial-review-card p { margin: 0; color: #22231f; font-size: 15px; line-height: 1.65; }
+.editorial-review-author { margin-top: 24px; font-size: 12px; color: #252620; }
+.editorial-review-author span { color: #777a6c; }
+@media (max-width: 900px) { .editorial-review-grid { grid-template-columns: 1fr; } }
