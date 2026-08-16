@@ -1,0 +1,86 @@
+/* Minimal product option controls — flat, quiet, editorial */
+.product-detail-page .form-label {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.02em !important;
+  color: var(--color-ink-black) !important;
+}
+
+.product-detail-page button[style*="backgroundColor"] {
+  box-shadow: none !important;
+}
+
+/* Color options */
+.product-detail-page button[style*="gap: 6px"] {
+  background: var(--color-warehouse-cream) !important;
+  color: var(--color-ink-black) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+
+.product-detail-page button[style*="gap: 6px"]:hover {
+  border-color: #aeb0a2 !important;
+  background: #f0f0e5 !important;
+}
+
+/* Selected color: subtle olive tint, never heavy */
+.product-detail-page button[style*="gap: 6px"][style*="2px solid"] {
+  background: #e9eddf !important;
+  border: 1px solid var(--color-rust) !important;
+  color: var(--color-ink-black) !important;
+}
+
+/* Size buttons */
+.product-detail-page button[style*="width: 48px"] {
+  width: 52px !important;
+  height: 46px !important;
+  background: var(--color-off-white) !important;
+  color: var(--color-ink-black) !important;
+  border: 1px solid var(--color-hairline) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.86rem !important;
+  font-weight: 500 !important;
+  transition: background-color .18s ease, border-color .18s ease;
+}
+
+.product-detail-page button[style*="width: 48px"]:hover {
+  background: #efefe4 !important;
+  border-color: #aeb0a2 !important;
+}
+
+/* Selected size: same understated treatment as selected colour */
+.product-detail-page button[style*="width: 48px"][style*="2px solid"] {
+  background: #e9eddf !important;
+  color: var(--color-ink-black) !important;
+  border: 1px solid var(--color-rust) !important;
+  box-shadow: none !important;
+}
+
+/* Fit guide */
+.product-detail-page span[style*="OVERSIZED FIT GUIDE"] {
+  font-family: var(--font-body) !important;
+  font-size: 0.74rem !important;
+  font-weight: 500 !important;
+  color: var(--color-rust) !important;
+  letter-spacing: 0.03em !important;
+}
+
+@media (max-width: 700px) {
+  .product-detail-page button[style*="width: 48px"] {
+    width: 48px !important;
+    height: 44px !important;
+  }
+
+  .product-detail-page button[style*="gap: 6px"] {
+    padding: 7px 10px !important;
+    font-size: 0.75rem !important;
+  }
+}
