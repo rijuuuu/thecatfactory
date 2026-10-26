@@ -1,4 +1,5 @@
 :root {
+<<<<<<< HEAD
   /* Minimal editorial palette */
   --color-ink-black: #10110e;
   --color-ink-light: #23241f;
@@ -50,4 +51,99 @@
 
   --transition-fast: 0.18s ease;
   --transition-normal: 0.3s ease;
+=======
+  /* ─── Brand Palette (Calm, Premium, Muted) ─── */
+  --color-bg:              #FAF8F5;    /* warm ivory page background */
+  --color-surface:         #FFFFFF;    /* card / panel surface */
+  --color-surface-soft:    #F4F1EC;    /* softer surface, sections */
+  --color-surface-warm:    #EDE9E1;    /* warm beige, subtle contrast */
+  --color-text:            #2B2B2B;    /* primary text — soft charcoal */
+  --color-text-muted:      #7A7570;    /* secondary / meta text */
+  --color-text-faint:      #B0ABA4;    /* placeholder / faint labels */
+
+  /* Primary accent: muted sage green */
+  --color-accent:          #7D9B76;    /* sage green */
+  --color-accent-hover:    #6A8864;    /* sage green hover */
+  --color-accent-light:    #A8BDA4;    /* light sage */
+  --color-accent-dim:      #EBF0EA;    /* sage tint for bg */
+
+  /* Secondary accent: warm earth/tan */
+  --color-earth:           #B5936A;    /* dusty tan/earth */
+  --color-earth-light:     #D4B896;    /* light tan */
+  --color-earth-dim:       #F5EDE2;    /* tan tint for bg */
+
+  /* Borders */
+  --color-border:          #E2DDD6;    /* default card border */
+  --color-border-strong:   #C8C2BA;    /* stronger border */
+  --color-border-dark:     #3A3632;    /* dark section border */
+
+  /* Status */
+  --color-success:         #4A7C59;
+  --color-warning:         #B07A3A;
+  --color-danger:          #9E4444;
+  --color-info:            #3A6B9E;
+
+  /* Footer / dark surfaces */
+  --color-dark:            #1C1A18;
+  --color-dark-surface:    #252220;
+  --color-dark-text:       #E8E4DC;
+  --color-dark-muted:      #8A8580;
+
+  /* ─── Legacy aliases (keeps old var() refs in JSX working) ─── */
+  --color-ink-black:       #2B2B2B;
+  --color-warehouse-cream: #F4F1EC;
+  --color-off-white:       #FFFFFF;
+  --color-factory-yellow:  #7D9B76;    /* remapped → sage for calm feel */
+  --color-factory-yellow-hover: #6A8864;
+  --color-rust:            #B5936A;    /* remapped → earth tan */
+  --color-rust-hover:      #9A7A55;
+  --color-hairline:        #E2DDD6;
+  --color-hairline-dark:   #3A3632;
+  --color-gray-subtle:     #7A7570;
+  --color-gray-bg:         #F0EDE8;
+  --color-ink-light:       #3E3A36;
+
+  /* ─── Typography ─── */
+  --font-display:  'Inter', system-ui, -apple-system, sans-serif;
+  --font-body:     'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:     'JetBrains Mono', 'Courier New', monospace;
+
+  /* ─── Spacing Scale ─── */
+  --space-xs:   4px;
+  --space-sm:   8px;
+  --space-md:   16px;
+  --space-lg:   24px;
+  --space-xl:   32px;
+  --space-2xl:  48px;
+  --space-3xl:  72px;
+  --space-4xl:  96px;
+
+  /* ─── Border Radius ─── */
+  --radius-none: 0px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-pill: 999px;
+  --radius-card: 12px;
+
+  /* ─── Shadows (soft elevation) ─── */
+  --shadow-xs:    0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+  --shadow-sm:    0 2px 6px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md:    0 4px 16px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.04);
+  --shadow-lg:    0 8px 32px rgba(0,0,0,0.09), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-hover: 0 16px 48px rgba(0,0,0,0.11), 0 6px 18px rgba(0,0,0,0.07);
+
+  /* ─── Legacy shadow / border aliases ─── */
+  --shadow-flat:        var(--shadow-md);
+  --shadow-yellow:      var(--shadow-md);
+  --border-hairline: 1px solid var(--color-border);
+  --border-thick:    1px solid var(--color-border-strong);
+  --border-dashed:   1px dashed var(--color-border-strong);
+
+  /* ─── Transitions ─── */
+  --transition-fast:   0.18s ease;
+  --transition-normal: 0.28s ease;
+  --transition-slow:   0.45s ease;
+>>>>>>> a32e243 (hello)
 }

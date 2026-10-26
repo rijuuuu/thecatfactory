@@ -20,15 +20,15 @@ export const CartDrawer = () => {
 
   return (
     <>
-      <div 
+      <div
         className={`cart-drawer-overlay ${isCartOpen ? 'open' : ''}`}
         onClick={closeCart}
       />
       <div className={`cart-drawer ${isCartOpen ? 'open' : ''}`}>
         <div className="cart-drawer-header">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <ShoppingBag size={20} />
-            <h2>FACTORY CART ({cartItems.length})</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <ShoppingBag size={18} style={{ color: 'var(--color-text-muted)' }} />
+            <h2>Cart ({cartItems.length})</h2>
           </div>
           <button className="icon-btn" onClick={closeCart} aria-label="Close Cart">
             <X size={18} />
@@ -37,28 +37,35 @@ export const CartDrawer = () => {
 
         {/* Free Shipping Progress Bar */}
         <div style={{
-          backgroundColor: 'var(--color-ink-black)',
-          color: 'white',
+          backgroundColor: 'var(--color-surface-soft)',
           padding: '10px 16px',
-          fontFamily: 'JetBrains Mono',
-          fontSize: '0.75rem'
+          borderBottom: '1px solid var(--color-border)',
+          fontSize: '0.75rem',
+          color: 'var(--color-text-muted)',
         }}>
           {remainingForFreeShipping > 0 ? (
-            <span>Add <strong>{formatINR(remainingForFreeShipping)}</strong> more for <strong>FREE EXPRESS SHIPPING</strong></span>
+            <span>
+              Add <strong style={{ color: 'var(--color-text)' }}>{formatINR(remainingForFreeShipping)}</strong> more for{' '}
+              <strong style={{ color: 'var(--color-accent)' }}>free express shipping</strong>
+            </span>
           ) : (
-            <span style={{ color: 'var(--color-factory-yellow)' }}>🎉 CONGRATS! YOU UNLOCKED FREE EXPRESS SHIPPING</span>
+            <span style={{ color: 'var(--color-accent)', fontWeight: 600 }}>
+              ✓ You've unlocked free express shipping!
+            </span>
           )}
           <div style={{
-            height: '4px',
-            backgroundColor: '#333',
-            marginTop: '6px',
-            position: 'relative'
+            height: '3px',
+            backgroundColor: 'var(--color-border)',
+            marginTop: '8px',
+            borderRadius: '999px',
+            overflow: 'hidden',
           }}>
             <div style={{
               height: '100%',
               width: `${progressPercent}%`,
-              backgroundColor: 'var(--color-factory-yellow)',
-              transition: 'width 0.3s ease'
+              backgroundColor: 'var(--color-accent)',
+              borderRadius: '999px',
+              transition: 'width 0.4s ease',
             }} />
           </div>
         </div>
@@ -71,54 +78,58 @@ export const CartDrawer = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '32px',
-            textAlign: 'center'
+            padding: '40px 32px',
+            textAlign: 'center',
           }}>
-            <CatMascot width={90} height={90} expression="sharp" fillColor="#8E8A81" />
-            <h3 style={{ marginTop: '16px', fontSize: '1.4rem' }}>YOUR CART IS EMPTY</h3>
-            <p style={{ fontFamily: 'JetBrains Mono', fontSize: '0.8rem', color: 'var(--color-gray-subtle)', margin: '8px 0 24px' }}>
-              No apparel staged in your dispatch queue.
+            <CatMascot width={80} height={80} expression="sharp" fillColor="var(--color-text-faint)" accentColor="var(--color-accent)" />
+            <h3 style={{ marginTop: '20px', fontSize: '1.1rem', fontWeight: 400, letterSpacing: '0.04em' }}>
+              Your cart is empty
+            </h3>
+            <p style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', margin: '8px 0 24px', lineHeight: 1.6 }}>
+              No items staged in your dispatch queue yet.
             </p>
             <Link to="/shop" onClick={closeCart} className="btn-primary">
-              EXPLORE CATALOG
+              Explore Catalog
             </Link>
           </div>
         ) : (
           <div className="cart-items-list">
             {cartItems.map((item, index) => (
               <div key={`${item.product._id}-${item.size}-${item.color}-${index}`} className="cart-item">
-                <div 
-                  className="cart-item-img" 
-                  style={{ backgroundColor: item.cardBgColor || '#EAE5DB' }}
+                <div
+                  className="cart-item-img"
+                  style={{ backgroundColor: item.cardBgColor || 'var(--color-surface-warm)' }}
                 >
-                  <CatMascot 
-                    width={50} 
-                    height={50} 
-                    fillColor={item.printColor || '#141414'} 
-                    accentColor="#E8B923"
+                  <CatMascot
+                    width={46}
+                    height={46}
+                    fillColor={item.printColor || 'var(--color-text)'}
+                    accentColor="var(--color-accent)"
                   />
                 </div>
                 <div className="cart-item-info">
                   <span className="cart-item-title">{item.product.name}</span>
                   <span className="cart-item-spec">
-                    SIZE: <strong>{item.size}</strong> | COLOR: <strong>{item.color}</strong>
+                    {item.size} · {item.color}
                   </span>
                   <div className="cart-qty-stepper">
-                    <button onClick={() => updateQty(index, -1)} aria-label="Decrease quantity">-</button>
+                    <button onClick={() => updateQty(index, -1)} aria-label="Decrease quantity">−</button>
                     <span>{item.qty}</span>
                     <button onClick={() => updateQty(index, 1)} aria-label="Increase quantity">+</button>
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontWeight: 800, fontSize: '0.95rem' }}>
+                  <span style={{ fontWeight: 600, fontSize: '0.92rem', color: 'var(--color-text)' }}>
                     {formatINR(item.product.price * item.qty)}
                   </span>
-                  <button 
+                  <button
                     onClick={() => removeFromCart(index)}
-                    style={{ color: 'var(--color-rust)', opacity: 0.8 }}
+                    style={{ color: 'var(--color-text-faint)', transition: 'color var(--transition-fast)' }}
                     aria-label="Remove item"
+                    onMouseEnter={e => e.currentTarget.style.color = 'var(--color-danger)'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'var(--color-text-faint)'}
                   >
-                    <Trash2 size={16} />
+                    <Trash2 size={15} />
                   </button>
                 </div>
               </div>
@@ -134,20 +145,22 @@ export const CartDrawer = () => {
               <span>{formatINR(subtotal)}</span>
             </div>
             <div className="cart-summary-row">
-              <span>Estimated Shipping</span>
-              <span>{remainingForFreeShipping === 0 ? 'FREE' : formatINR(149)}</span>
+              <span>Shipping</span>
+              <span style={{ color: remainingForFreeShipping === 0 ? 'var(--color-accent)' : 'inherit' }}>
+                {remainingForFreeShipping === 0 ? 'Free' : formatINR(149)}
+              </span>
             </div>
             <div className="cart-summary-row total">
               <span>Total</span>
               <span>{formatINR(subtotal + (remainingForFreeShipping === 0 ? 0 : 149))}</span>
             </div>
-            <button 
-              className="btn-primary" 
+            <button
+              className="btn-primary"
               onClick={handleCheckoutClick}
-              style={{ width: '100%', marginTop: '16px' }}
+              style={{ width: '100%', marginTop: '16px', justifyContent: 'center' }}
               id="cart-checkout-cta"
             >
-              PROCEED TO CHECKOUT <ArrowRight size={16} />
+              Proceed to Checkout <ArrowRight size={15} />
             </button>
           </div>
         )}

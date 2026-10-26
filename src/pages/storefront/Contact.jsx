@@ -14,12 +14,12 @@ export const Contact = ({ onToast }) => {
 
   const faqs = [
     {
-      q: "What does 'QC PASSED' mean on the tags?",
+      q: "What does 'QC Passed' mean on the tags?",
       a: "Every single garment undergoes physical manual inspection at Dock 04. The QC stamp confirms 12 parameters including fabric GSM, print adhesion, seam strength, and size accuracy."
     },
     {
       q: "What is your shipping timeline across India?",
-      a: "Orders placed before 2 PM IST ship the same day via Express logistics (BlueDart/Delhivery). Metro deliveries take 2-3 business days; rest of India takes 3-5 days."
+      a: "Orders placed before 2 PM IST ship the same day via Express logistics (BlueDart/Delhivery). Metro deliveries take 2–3 business days; rest of India takes 3–5 days."
     },
     {
       q: "What is the return & exchange policy?",
@@ -36,39 +36,60 @@ export const Contact = ({ onToast }) => {
       <div className="container">
         <div className="section-header">
           <div>
-            <span className="subtitle">FACTORY SUPPORT // OPERATOR COMMUNICATIONS</span>
-            <h2>CONTACT & HELP CENTER</h2>
+            <span className="subtitle">Support</span>
+            <h2>Contact & Help Center</h2>
           </div>
         </div>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 'var(--space-3xl)',
-          alignItems: 'start'
-        }}>
-          {/* Left Contact Form */}
+        <div className="contact-layout">
+          {/* Left: Contact Form */}
           <div style={{
-            backgroundColor: 'var(--color-off-white)',
-            border: 'var(--border-thick)',
-            padding: 'var(--space-2xl)',
-            boxShadow: 'var(--shadow-flat)'
+            backgroundColor: 'var(--color-surface)',
+            border: '1px solid var(--color-border)',
+            borderRadius: 'var(--radius-xl)',
+            padding: 'var(--space-xl)',
+            boxShadow: 'var(--shadow-sm)',
           }}>
-            <h3 style={{ fontSize: '1.6rem', marginBottom: '16px' }}>DISPATCH OPERATOR QUERY FORM</h3>
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: 400,
+              letterSpacing: '0.04em',
+              marginBottom: '20px',
+              color: 'var(--color-text)',
+            }}>
+              Send us a message
+            </h3>
 
             {submitted ? (
               <div style={{ textAlign: 'center', padding: '32px 0' }}>
-                <Check size={48} color="var(--color-factory-yellow)" style={{ margin: '0 auto 12px' }} />
-                <h4 style={{ fontSize: '1.4rem' }}>TRANSMISSION RECEIVED!</h4>
-                <p style={{ fontFamily: 'JetBrains Mono', fontSize: '0.85rem', color: '#666', marginTop: '6px' }}>
-                  A factory support officer will respond within 4 business hours.
+                <div style={{
+                  width: 52,
+                  height: 52,
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--color-accent-dim)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                }}>
+                  <Check size={22} color="var(--color-accent)" />
+                </div>
+                <h4 style={{ fontSize: '1.15rem', fontWeight: 400, color: 'var(--color-text)' }}>
+                  Message received!
+                </h4>
+                <p style={{ fontSize: '0.88rem', color: 'var(--color-text-muted)', marginTop: '8px', lineHeight: 1.65 }}>
+                  Our support team will respond within 4 business hours.
                 </p>
-                <button onClick={() => setSubmitted(false)} className="btn-secondary" style={{ marginTop: '16px' }}>
-                  SEND ANOTHER MESSAGE
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="btn-secondary"
+                  style={{ marginTop: '20px' }}
+                >
+                  Send another message
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div className="form-group">
                   <label className="form-label">Full Name</label>
                   <input
@@ -94,7 +115,7 @@ export const Contact = ({ onToast }) => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Query Subject</label>
+                  <label className="form-label">Subject</label>
                   <input
                     type="text"
                     required
@@ -106,53 +127,72 @@ export const Contact = ({ onToast }) => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Message Details</label>
+                  <label className="form-label">Message</label>
                   <textarea
                     rows="4"
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     className="form-textarea"
-                    placeholder="How can our support team assist with your order..."
+                    placeholder="How can we help with your order?"
                   />
                 </div>
 
-                <button type="submit" className="btn-primary" style={{ marginTop: '8px' }}>
-                  <Send size={16} /> TRANSMIT MESSAGE
+                <button type="submit" className="btn-primary" style={{ marginTop: '4px' }}>
+                  <Send size={15} /> Send Message
                 </button>
               </form>
             )}
 
-            {/* Address Box */}
-            <div style={{ marginTop: '32px', borderTop: 'var(--border-dashed)', paddingTop: '20px', display: 'flex', flexDirection: 'column', gap: '12px', fontFamily: 'JetBrains Mono', fontSize: '0.8rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <MapPin size={16} color="var(--color-rust)" />
+            {/* Contact Info */}
+            <div style={{
+              marginTop: '28px',
+              borderTop: '1px dashed var(--color-border)',
+              paddingTop: '20px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '12px',
+              fontSize: '0.85rem',
+              color: 'var(--color-text-muted)',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <MapPin size={15} color="var(--color-accent)" style={{ flexShrink: 0 }} />
                 <span>Warehouse Hub #04, Industrial Estate Phase II, Mumbai 400093</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Mail size={16} color="var(--color-rust)" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Mail size={15} color="var(--color-accent)" style={{ flexShrink: 0 }} />
                 <span>support@catfactory.com</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Phone size={16} color="var(--color-rust)" />
-                <span>+91 98765 43210 (Mon-Sat, 10 AM - 7 PM IST)</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Phone size={15} color="var(--color-accent)" style={{ flexShrink: 0 }} />
+                <span>+91 98765 43210 (Mon–Sat, 10 AM – 7 PM IST)</span>
               </div>
             </div>
           </div>
 
-          {/* Right FAQ Accordion */}
+          {/* Right: FAQ Accordion */}
           <div>
-            <h3 style={{ fontSize: '1.8rem', marginBottom: '16px' }}>FREQUENTLY ASKED QUESTIONS</h3>
+            <h3 style={{
+              fontSize: '1.25rem',
+              fontWeight: 400,
+              letterSpacing: '0.04em',
+              marginBottom: '20px',
+              color: 'var(--color-text)',
+            }}>
+              Frequently asked questions
+            </h3>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {faqs.map((faq, idx) => {
                 const isOpen = openFaq === idx;
                 return (
                   <div key={idx} style={{
-                    backgroundColor: 'var(--color-off-white)',
-                    border: 'var(--border-thick)',
-                    padding: 'var(--space-md)',
-                    boxShadow: 'var(--shadow-flat)'
+                    backgroundColor: 'var(--color-surface)',
+                    border: '1px solid var(--color-border)',
+                    borderRadius: 'var(--radius-md)',
+                    overflow: 'hidden',
+                    transition: 'box-shadow var(--transition-fast)',
+                    boxShadow: isOpen ? 'var(--shadow-sm)' : 'none',
                   }}>
                     <button
                       onClick={() => setOpenFaq(isOpen ? null : idx)}
@@ -162,18 +202,29 @@ export const Contact = ({ onToast }) => {
                         display: 'flex',
                         justifyContent: 'space-between',
                         alignItems: 'center',
-                        fontFamily: 'JetBrains Mono',
-                        fontWeight: 800,
-                        fontSize: '0.9rem',
-                        color: 'var(--color-ink-black)'
+                        padding: 'var(--space-md)',
+                        fontWeight: isOpen ? 600 : 400,
+                        fontSize: '0.92rem',
+                        color: 'var(--color-text)',
+                        gap: '12px',
+                        minHeight: '52px',
                       }}
                     >
                       <span>{faq.q}</span>
-                      {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                      <span style={{ flexShrink: 0, color: 'var(--color-text-faint)' }}>
+                        {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                      </span>
                     </button>
 
                     {isOpen && (
-                      <p style={{ marginTop: '12px', fontFamily: 'Archivo', fontSize: '0.9rem', color: '#444', borderTop: 'var(--border-hairline)', paddingTop: '10px' }}>
+                      <p style={{
+                        padding: '0 var(--space-md) var(--space-md)',
+                        fontSize: '0.9rem',
+                        color: 'var(--color-text-muted)',
+                        lineHeight: 1.7,
+                        borderTop: '1px solid var(--color-border)',
+                        paddingTop: '12px',
+                      }}>
                         {faq.a}
                       </p>
                     )}

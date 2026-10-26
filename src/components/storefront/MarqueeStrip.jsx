@@ -3,11 +3,11 @@ import { ShieldCheck, Truck, RotateCcw, Award, PackageCheck } from 'lucide-react
 
 export const MarqueeStrip = () => {
   const items = [
-    { icon: <Truck size={16} />, text: "FREE EXPRESS SHIPPING OVER ₹1,999" },
-    { icon: <PackageCheck size={16} />, text: "QUALITY INSPECTED BEFORE DISPATCH" },
-    { icon: <RotateCcw size={16} />, text: "7-DAY EASY RETURNS" },
-    { icon: <Award size={16} />, text: "400 GSM HEAVYWEIGHT COTTON" },
-    { icon: <ShieldCheck size={16} />, text: "100% AUTHENTIC INDUSTRIAL STREETWEAR" }
+    { icon: <Truck size={14} />, text: "Free express shipping over ₹1,999" },
+    { icon: <PackageCheck size={14} />, text: "Quality inspected before dispatch" },
+    { icon: <RotateCcw size={14} />, text: "7-day easy returns" },
+    { icon: <Award size={14} />, text: "400 GSM heavyweight cotton" },
+    { icon: <ShieldCheck size={14} />, text: "100% authentic industrial streetwear" },
   ];
 
   return (
@@ -17,7 +17,7 @@ export const MarqueeStrip = () => {
           <div key={idx} className="marquee-item">
             <span className="highlight">{item.icon}</span>
             <span>{item.text}</span>
-            <span style={{ color: 'var(--color-rust)', margin: '0 8px' }}>•</span>
+            <span style={{ color: 'var(--color-border-strong)', margin: '0 6px' }}>·</span>
           </div>
         ))}
       </div>

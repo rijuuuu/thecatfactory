@@ -18,7 +18,7 @@ export const ProductCard = ({ product, onToast }) => {
     e.stopPropagation();
     const defaultSize = (product.sizes && product.sizes[0]) || 'M';
     const defaultColor = (product.colors && product.colors[0]) || { name: 'Standard', hex: '#141414' };
-    
+
     addToCart(product, defaultSize, defaultColor, 1);
     setAddedAnimation(true);
     if (onToast) onToast(`Added ${product.name} to your cart!`, 'success');
@@ -41,42 +41,53 @@ export const ProductCard = ({ product, onToast }) => {
   return (
     <div className="product-card">
       <Link to={`/shop/${product.slug || product._id}`}>
-        {/* Card Image Area with Image or SVG Print */}
-        <div 
-          className="product-card-image" 
-          style={{ backgroundColor: product.cardBgColor || '#EAE5DB' }}
+        {/* Card Image Area */}
+        <div
+          className="product-card-image"
+          style={{ backgroundColor: product.cardBgColor || 'var(--color-surface-soft)' }}
         >
-          {/* Card Tag */}
-          {product.isBestseller && <span className="card-tag bestseller">BESTSELLER</span>}
-          {!product.isBestseller && product.isNewArrival && <span className="card-tag new">NEW DROP</span>}
-          {product.stock <= 5 && <span className="card-tag" style={{ backgroundColor: 'var(--color-rust)', color: 'white' }}>ONLY {product.stock} LEFT</span>}
+          {/* Card Tags */}
+          {product.isBestseller && (
+            <span className="card-tag bestseller">Bestseller</span>
+          )}
+          {!product.isBestseller && product.isNewArrival && (
+            <span className="card-tag new">New Drop</span>
+          )}
+          {product.stock <= 5 && (
+            <span className="card-tag" style={{
+              backgroundColor: 'rgba(181, 147, 106, 0.12)',
+              color: 'var(--color-earth)',
+            }}>
+              Only {product.stock} left
+            </span>
+          )}
 
           {/* Wishlist Button */}
-          <button 
-            className="wishlist-btn" 
+          <button
+            className="wishlist-btn"
             onClick={handleWishlistToggle}
             aria-label="Wishlist Item"
           >
-            <Heart size={16} fill={isWishlisted ? 'var(--color-rust)' : 'none'} color={isWishlisted ? 'var(--color-rust)' : '#141414'} />
+            <Heart
+              size={15}
+              fill={isWishlisted ? 'var(--color-earth)' : 'none'}
+              color={isWishlisted ? 'var(--color-earth)' : 'var(--color-text-muted)'}
+            />
           </button>
 
-          {/* Uploaded Product Image or Cat Mascot Graphic Fallback */}
+          {/* Product Image or Cat Mascot fallback */}
           {hasUploadedImage ? (
-            <img 
-              src={product.images[0]} 
-              alt={product.name} 
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover'
-              }}
+            <img
+              src={product.images[0]}
+              alt={product.name}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           ) : (
-            <CatMascot 
-              width={160} 
-              height={160} 
-              fillColor={product.printColor || '#141414'} 
-              accentColor="#E8B923"
+            <CatMascot
+              width={150}
+              height={150}
+              fillColor={product.printColor || 'var(--color-text)'}
+              accentColor="var(--color-accent)"
               expression={product.isBestseller ? 'cool' : 'sharp'}
             />
           )}
@@ -95,9 +106,9 @@ export const ProductCard = ({ product, onToast }) => {
             {product.colors && product.colors.length > 0 && (
               <div className="product-colors-swatch">
                 {product.colors.map((c, idx) => (
-                  <span 
-                    key={idx} 
-                    className="color-dot" 
+                  <span
+                    key={idx}
+                    className="color-dot"
                     style={{ backgroundColor: c.hex }}
                     title={c.name}
                   />
@@ -112,23 +123,23 @@ export const ProductCard = ({ product, onToast }) => {
               {product.mrp > product.price && (
                 <>
                   <span className="mrp-price">{formatINR(product.mrp)}</span>
-                  <span className="discount-tag">{discountPercent}% OFF</span>
+                  <span className="discount-tag">{discountPercent}% off</span>
                 </>
               )}
             </div>
 
-            <button 
-              className="add-to-cart-btn" 
+            <button
+              className="add-to-cart-btn"
               onClick={handleQuickAdd}
               id={`add-cart-btn-${product._id}`}
             >
               {addedAnimation ? (
                 <>
-                  <Check size={16} /> ADDED TO STAGE
+                  <Check size={15} /> Added
                 </>
               ) : (
                 <>
-                  <ShoppingBag size={16} /> ADD TO CART
+                  <ShoppingBag size={15} /> Add to Cart
                 </>
               )}
             </button>

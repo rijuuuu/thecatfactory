@@ -87,47 +87,46 @@ export const Account = ({ onToast }) => {
   if (customer) {
     return (
       <div className="account-page" style={{ padding: 'var(--space-3xl) 0' }}>
-        <div className="container" style={{ maxWidth: '720px' }}>
+        <div className="container" style={{ maxWidth: '640px' }}>
           <div style={{
-            backgroundColor: 'var(--color-off-white)',
-            border: 'var(--border-thick)',
+            backgroundColor: 'var(--color-surface)',
+            border: '1px solid var(--color-border)',
+            borderRadius: 'var(--radius-xl)',
             padding: 'var(--space-2xl)',
-            boxShadow: 'var(--shadow-flat)',
-            textAlign: 'center'
+            boxShadow: 'var(--shadow-sm)',
+            textAlign: 'center',
           }}>
-            <CatMascot width={90} height={90} fillColor="#141414" accentColor="#E8B923" expression="cool" />
-            <h2 style={{ fontSize: '2.2rem', marginTop: '12px' }}>CUSTOMER ACCOUNT HUB</h2>
-            <p style={{ fontFamily: 'JetBrains Mono', fontSize: '0.85rem', color: 'var(--color-rust)', fontWeight: 800 }}>
-              USER ID: @{customer.userId || customer.name.toLowerCase().replace(/\s+/g, '_')}
+            <CatMascot width={80} height={80} fillColor="var(--color-text)" accentColor="var(--color-accent)" expression="cool" />
+            <h2 style={{ fontSize: '1.8rem', fontWeight: 300, letterSpacing: '0.04em', marginTop: '16px' }}>Customer Account Hub</h2>
+            <p style={{ fontSize: '0.85rem', color: 'var(--color-accent)', fontWeight: 500, marginTop: '4px' }}>
+              @{customer.userId || customer.name.toLowerCase().replace(/\s+/g, '_')}
             </p>
 
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
-              gap: '16px',
-              margin: '24px 0',
-              textAlign: 'left'
-            }}>
-              <div style={{ backgroundColor: 'var(--color-warehouse-cream)', padding: '16px', border: 'var(--border-thick)' }}>
-                <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.7rem', color: '#666' }}>FULL NAME & EMAIL</span>
-                <div style={{ fontWeight: 800, fontSize: '0.95rem' }}>{customer.name}</div>
-                <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.8rem', color: '#555' }}>{customer.email}</div>
+            <div className="account-grid">
+              <div style={{ backgroundColor: 'var(--color-surface-soft)', padding: '16px', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', letterSpacing: '0.05em', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>
+                  Full Name & Email
+                </span>
+                <div style={{ fontWeight: 600, fontSize: '0.95rem', color: 'var(--color-text)' }}>{customer.name}</div>
+                <div style={{ fontSize: '0.82rem', color: 'var(--color-text-muted)', marginTop: '2px' }}>{customer.email}</div>
               </div>
 
-              <div style={{ backgroundColor: 'var(--color-warehouse-cream)', padding: '16px', border: 'var(--border-thick)' }}>
-                <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.7rem', color: '#666' }}>TOTAL SPENT IN FACTORY</span>
-                <div style={{ fontWeight: 800, fontFamily: 'JetBrains Mono', fontSize: '1.1rem', color: 'var(--color-rust)' }}>
+              <div style={{ backgroundColor: 'var(--color-surface-soft)', padding: '16px', borderRadius: 'var(--radius-lg)', border: '1px solid var(--color-border)' }}>
+                <span style={{ fontSize: '0.72rem', color: 'var(--color-text-muted)', letterSpacing: '0.05em', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>
+                  Total Orders Value
+                </span>
+                <div style={{ fontWeight: 600, fontSize: '1.2rem', color: 'var(--color-accent)', marginTop: '4px' }}>
                   {formatINR(customer.totalSpent || 0)}
                 </div>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link to="/track" className="btn-primary">
-                TRACK ACTIVE ORDERS
+                Track Active Orders
               </Link>
-              <button onClick={handleLogout} className="btn-secondary" style={{ color: 'var(--color-rust)' }}>
-                LOG OUT
+              <button onClick={handleLogout} className="btn-secondary">
+                Log Out
               </button>
             </div>
           </div>
@@ -138,57 +137,68 @@ export const Account = ({ onToast }) => {
 
   return (
     <div className="account-page" style={{ padding: 'var(--space-3xl) 0' }}>
-      <div className="container" style={{ maxWidth: '540px' }}>
+      <div className="container" style={{ maxWidth: '480px' }}>
         <div style={{
-          backgroundColor: 'var(--color-off-white)',
-          border: 'var(--border-thick)',
+          backgroundColor: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          borderRadius: 'var(--radius-xl)',
           padding: 'var(--space-2xl)',
-          boxShadow: 'var(--shadow-flat)'
+          boxShadow: 'var(--shadow-sm)',
         }}>
           {/* Tab Switcher */}
-          <div style={{ display: 'flex', borderBottom: 'var(--border-thick)', marginBottom: '24px' }}>
+          <div style={{ display: 'flex', borderBottom: '1px solid var(--color-border)', marginBottom: '24px' }}>
             <button
               onClick={() => setActiveTab('login')}
               style={{
                 flex: 1,
                 padding: '12px',
-                fontFamily: 'JetBrains Mono',
-                fontWeight: 800,
                 fontSize: '0.9rem',
-                borderBottom: activeTab === 'login' ? '3px solid var(--color-factory-yellow)' : 'none',
-                backgroundColor: activeTab === 'login' ? 'var(--color-warehouse-cream)' : 'transparent'
+                fontWeight: activeTab === 'login' ? 600 : 400,
+                color: activeTab === 'login' ? 'var(--color-accent)' : 'var(--color-text-muted)',
+                borderBottom: activeTab === 'login' ? '2px solid var(--color-accent)' : 'none',
+                background: 'none',
+                cursor: 'pointer',
               }}
             >
-              LOGIN
+              Sign In
             </button>
             <button
               onClick={() => setActiveTab('signup')}
               style={{
                 flex: 1,
                 padding: '12px',
-                fontFamily: 'JetBrains Mono',
-                fontWeight: 800,
                 fontSize: '0.9rem',
-                borderBottom: activeTab === 'signup' ? '3px solid var(--color-factory-yellow)' : 'none',
-                backgroundColor: activeTab === 'signup' ? 'var(--color-warehouse-cream)' : 'transparent'
+                fontWeight: activeTab === 'signup' ? 600 : 400,
+                color: activeTab === 'signup' ? 'var(--color-accent)' : 'var(--color-text-muted)',
+                borderBottom: activeTab === 'signup' ? '2px solid var(--color-accent)' : 'none',
+                background: 'none',
+                cursor: 'pointer',
               }}
             >
-              CREATE ACCOUNT
+              Create Account
             </button>
           </div>
 
           {error && (
-            <div style={{ backgroundColor: '#3A1515', color: '#FF7777', padding: '10px', fontFamily: 'JetBrains Mono', fontSize: '0.8rem', marginBottom: '16px' }}>
+            <div style={{
+              backgroundColor: 'rgba(196, 114, 90, 0.12)',
+              color: 'var(--color-rust)',
+              padding: '12px',
+              borderRadius: 'var(--radius-md)',
+              border: '1px solid rgba(196, 114, 90, 0.3)',
+              fontSize: '0.82rem',
+              marginBottom: '16px',
+            }}>
               ⚠️ {error}
             </div>
           )}
 
-          <form onSubmit={handleAuthSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <form onSubmit={handleAuthSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             {activeTab === 'login' ? (
               /* LOGIN FORM */
               <>
                 <div className="form-group">
-                  <label className="form-label">USER ID / EMAIL / PHONE</label>
+                  <label className="form-label">User ID / Email / Phone</label>
                   <input
                     type="text"
                     name="userId"
@@ -196,12 +206,12 @@ export const Account = ({ onToast }) => {
                     value={formData.userId}
                     onChange={handleChange}
                     className="form-input"
-                    placeholder="Enter UserID or email"
+                    placeholder="Enter User ID or email"
                   />
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">PASSWORD</label>
+                  <label className="form-label">Password</label>
                   <input
                     type="password"
                     name="password"
@@ -217,7 +227,7 @@ export const Account = ({ onToast }) => {
               /* CREATE ACCOUNT FORM */
               <>
                 <div className="form-group">
-                  <label className="form-label">SET UNIQUE USER ID</label>
+                  <label className="form-label">Choose User ID</label>
                   <input
                     type="text"
                     name="userId"
@@ -227,13 +237,13 @@ export const Account = ({ onToast }) => {
                     className="form-input"
                     placeholder="e.g. catlover99"
                   />
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.65rem', color: '#777' }}>
-                    Used for logging into your account in the future.
+                  <span style={{ fontSize: '0.72rem', color: 'var(--color-text-faint)', marginTop: '4px', display: 'block' }}>
+                    Used for logging into your account.
                   </span>
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">FULL NAME</label>
+                  <label className="form-label">Full Name</label>
                   <input
                     type="text"
                     name="name"
@@ -246,7 +256,7 @@ export const Account = ({ onToast }) => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">EMAIL ADDRESS</label>
+                  <label className="form-label">Email Address</label>
                   <input
                     type="email"
                     name="email"
@@ -259,7 +269,7 @@ export const Account = ({ onToast }) => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">PASSWORD</label>
+                  <label className="form-label">Password</label>
                   <input
                     type="password"
                     name="password"
@@ -272,7 +282,7 @@ export const Account = ({ onToast }) => {
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">MOBILE NUMBER</label>
+                  <label className="form-label">Mobile Number</label>
                   <input
                     type="tel"
                     name="phone"
@@ -285,8 +295,8 @@ export const Account = ({ onToast }) => {
               </>
             )}
 
-            <button type="submit" disabled={loading} className="btn-primary" style={{ marginTop: '12px', width: '100%' }}>
-              {loading ? 'PROCESSING...' : activeTab === 'login' ? 'SIGN IN TO ACCOUNT' : 'REGISTER ACCOUNT'}
+            <button type="submit" disabled={loading} className="btn-primary" style={{ marginTop: '10px', width: '100%', justifyContent: 'center' }}>
+              {loading ? 'Please wait…' : activeTab === 'login' ? 'Sign In' : 'Register Account'}
             </button>
           </form>
         </div>

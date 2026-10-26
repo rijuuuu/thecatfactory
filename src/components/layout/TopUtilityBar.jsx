@@ -7,8 +7,8 @@ export const TopUtilityBar = () => {
     <div className="top-bar">
       <div className="container">
         <div className="top-bar-promo">
-          <Truck size={14} />
-          <span>⚡ FREE EXPRESS SHIPPING ON ALL ORDERS OVER ₹1,999 • QUALITY INSPECTED</span>
+          <Truck size={13} />
+          <span>Free express shipping on all orders over ₹1,999 · Quality inspected</span>
         </div>
         <div className="top-bar-links">
           <Link to="/track" style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>

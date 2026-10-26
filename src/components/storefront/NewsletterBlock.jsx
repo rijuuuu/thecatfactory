@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Mail, Check } from 'lucide-react';
-import { CatMascot } from '../../assets/CatMascot.jsx';
 
 export const NewsletterBlock = ({ onToast }) => {
   const [email, setEmail] = useState('');
@@ -17,71 +16,132 @@ export const NewsletterBlock = ({ onToast }) => {
 
   return (
     <section style={{
-      backgroundColor: 'var(--color-ink-black)',
-      color: 'var(--color-warehouse-cream)',
+      backgroundColor: 'var(--color-dark)',
+      color: 'var(--color-dark-text)',
       padding: 'var(--space-3xl) 0',
-      borderBottom: 'var(--border-thick)'
     }}>
       <div className="container">
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
-          gap: 'var(--space-2xl)',
-          alignItems: 'center'
+          gap: 'var(--space-3xl)',
+          alignItems: 'center',
         }}>
+          {/* Left copy */}
           <div>
             <span style={{
-              fontFamily: 'JetBrains Mono',
-              fontSize: '0.75rem',
-              color: 'var(--color-factory-yellow)',
-              fontWeight: 700,
-              letterSpacing: '0.1em'
+              display: 'block',
+              fontSize: '0.68rem',
+              fontWeight: 600,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
+              color: 'var(--color-accent-light)',
+              marginBottom: '10px',
             }}>
-              DROP DISPATCH ALERTS
+              Drop Dispatch Alerts
             </span>
-            <h2 style={{ fontSize: '2.8rem', marginTop: '6px', color: 'white' }}>
-              NEVER MISS A LIMITED QC DROP
+            <h2 style={{
+              fontSize: 'clamp(1.6rem, 3.5vw, 2.6rem)',
+              fontWeight: 300,
+              color: 'var(--color-dark-text)',
+              letterSpacing: '0.04em',
+              lineHeight: 1.15,
+              marginBottom: '14px',
+            }}>
+              Never miss a limited drop
             </h2>
-            <p style={{ fontFamily: 'Archivo', fontSize: '1rem', color: '#A0A0A0', marginTop: '12px' }}>
-              Subscribe to receive instant SMS/email dispatches when new small-batch heavyweights drop. Early access for members + 10% off your first order with code <strong>FACTORY10</strong>.
+            <p style={{
+              fontSize: '0.95rem',
+              color: 'var(--color-dark-muted)',
+              lineHeight: 1.7,
+              maxWidth: '400px',
+            }}>
+              Subscribe for instant alerts when new small-batch heavyweights drop.
+              Early access for members + 10% off your first order with code{' '}
+              <strong style={{ color: 'var(--color-accent-light)' }}>FACTORY10</strong>.
             </p>
           </div>
 
+          {/* Right form panel */}
           <div style={{
-            backgroundColor: '#1E1E1E',
-            border: '2px solid var(--color-factory-yellow)',
+            backgroundColor: 'var(--color-dark-surface)',
+            border: '1px solid var(--color-border-dark)',
+            borderRadius: 'var(--radius-lg)',
             padding: 'var(--space-xl)',
-            boxShadow: 'var(--shadow-yellow)'
           }}>
             {subscribed ? (
               <div style={{ textAlign: 'center', padding: '16px 0' }}>
-                <Check size={40} color="var(--color-factory-yellow)" style={{ margin: '0 auto 12px' }} />
-                <h3 style={{ fontSize: '1.4rem', color: 'white' }}>DISPATCH SUBSCRIBED!</h3>
-                <p style={{ fontFamily: 'JetBrains Mono', fontSize: '0.85rem', color: '#A0A0A0', marginTop: '6px' }}>
-                  Use promo code <strong style={{ color: 'var(--color-factory-yellow)' }}>FACTORY10</strong> at checkout for 10% off.
+                <div style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--color-accent-dim)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 16px',
+                }}>
+                  <Check size={22} color="var(--color-accent)" />
+                </div>
+                <h3 style={{
+                  fontSize: '1.15rem',
+                  fontWeight: 400,
+                  color: 'var(--color-dark-text)',
+                  letterSpacing: '0.04em',
+                }}>
+                  You're subscribed!
+                </h3>
+                <p style={{
+                  fontSize: '0.85rem',
+                  color: 'var(--color-dark-muted)',
+                  marginTop: '8px',
+                  lineHeight: 1.6,
+                }}>
+                  Use promo code{' '}
+                  <strong style={{ color: 'var(--color-accent-light)' }}>FACTORY10</strong>{' '}
+                  at checkout for 10% off.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <label className="form-label" style={{ color: 'var(--color-factory-yellow)' }}>
-                  ENTER YOUR DISPATCH EMAIL ADDRESS:
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <label style={{
+                  fontSize: '0.72rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-dark-muted)',
+                }}>
+                  Your email address
                 </label>
-                <div style={{ display: 'flex', gap: '8px' }}>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                   <input
                     type="email"
                     required
-                    placeholder="operator@catfactory.com"
+                    placeholder="your@email.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="form-input"
-                    style={{ backgroundColor: '#141414', color: 'white', borderColor: '#333' }}
+                    style={{
+                      flex: '1 1 200px',
+                      backgroundColor: 'var(--color-dark)',
+                      color: 'var(--color-dark-text)',
+                      borderColor: 'var(--color-border-dark)',
+                    }}
                   />
-                  <button type="submit" className="btn-primary" style={{ whiteSpace: 'nowrap' }}>
-                    JOIN LIST
+                  <button
+                    type="submit"
+                    className="btn-primary"
+                    style={{ whiteSpace: 'nowrap', flex: '0 0 auto' }}
+                  >
+                    <Mail size={15} /> Join list
                   </button>
                 </div>
-                <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.65rem', color: '#777' }}>
-                  Zero spam. Unsubscribe anytime with 1 click.
+                <span style={{
+                  fontSize: '0.7rem',
+                  color: 'var(--color-dark-muted)',
+                  lineHeight: 1.5,
+                }}>
+                  Zero spam. Unsubscribe anytime with one click.
                 </span>
               </form>
             )}

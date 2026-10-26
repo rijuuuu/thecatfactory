@@ -29,9 +29,9 @@ export const Checkout = ({ onToast }) => {
   if (cartItems.length === 0) {
     return (
       <div className="container" style={{ padding: '80px 0', textAlign: 'center' }}>
-        <h2>YOUR CART IS EMPTY</h2>
-        <p style={{ fontFamily: 'JetBrains Mono', margin: '12px 0 24px' }}>Add items to your cart before proceeding to checkout.</p>
-        <Link to="/shop" className="btn-primary">EXPLORE CATALOG</Link>
+        <h2 style={{ fontWeight: 400, marginBottom: '12px' }}>Your cart is empty</h2>
+        <p style={{ color: 'var(--color-text-muted)', margin: '12px 0 24px' }}>Add items to your cart before proceeding to checkout.</p>
+        <Link to="/shop" className="btn-primary">Explore catalog</Link>
       </div>
     );
   }
@@ -79,7 +79,7 @@ export const Checkout = ({ onToast }) => {
 
       if (res.success && res.order) {
         clearCart();
-        if (onToast) onToast('Order submitted successfully! QC Verification started.', 'success');
+        if (onToast) onToast('Order submitted successfully! QC verification started.', 'success');
         navigate(`/order-confirmation?orderNumber=${res.order.orderNumber}`);
       } else {
         throw new Error(res.message || 'Failed to place order');
@@ -95,40 +95,56 @@ export const Checkout = ({ onToast }) => {
       <div className="container">
         <div className="section-header">
           <div>
-            <span className="subtitle">FINAL DISPATCH STAGING</span>
-            <h2>CHECKOUT & DISPATCH FORM</h2>
+            <span className="subtitle">Secure Order</span>
+            <h2>Checkout & Delivery</h2>
           </div>
         </div>
 
         <form onSubmit={handleSubmit}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 400px',
-            gap: 'var(--space-2xl)',
-            alignItems: 'start'
-          }}>
+          <div className="checkout-layout">
             {/* Left Form Column */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
               {error && (
-                <div style={{ backgroundColor: '#3A1515', color: '#FF7777', padding: '12px', fontFamily: 'JetBrains Mono', fontSize: '0.85rem' }}>
+                <div style={{
+                  backgroundColor: 'rgba(196, 114, 90, 0.12)',
+                  color: 'var(--color-rust)',
+                  padding: '14px 18px',
+                  borderRadius: 'var(--radius-md)',
+                  border: '1px solid rgba(196, 114, 90, 0.3)',
+                  fontSize: '0.88rem',
+                }}>
                   ⚠️ {error}
                 </div>
               )}
 
               {/* Step 1: Customer Contact */}
               <div style={{
-                backgroundColor: 'var(--color-off-white)',
-                border: 'var(--border-thick)',
-                padding: 'var(--space-lg)',
-                boxShadow: 'var(--shadow-flat)'
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius-xl)',
+                padding: 'var(--space-xl)',
+                boxShadow: 'var(--shadow-sm)',
               }}>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ backgroundColor: 'var(--color-ink-black)', color: 'var(--color-factory-yellow)', padding: '2px 8px', fontSize: '1rem' }}>1</span>
-                  CONTACT DISPATCH DETAILS
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 500, marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{
+                    backgroundColor: 'var(--color-accent)',
+                    color: 'white',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                  }}>
+                    1
+                  </span>
+                  Contact Information
                 </h3>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  <div className="form-group" style={{ gridColumn: 'span 2' }}>
+                <div className="form-row-2col">
+                  <div className="form-group" style={{ gridColumn: '1 / -1' }}>
                     <label className="form-label">Full Name</label>
                     <input 
                       type="text" 
@@ -171,19 +187,33 @@ export const Checkout = ({ onToast }) => {
 
               {/* Step 2: Shipping Destination */}
               <div style={{
-                backgroundColor: 'var(--color-off-white)',
-                border: 'var(--border-thick)',
-                padding: 'var(--space-lg)',
-                boxShadow: 'var(--shadow-flat)'
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius-xl)',
+                padding: 'var(--space-xl)',
+                boxShadow: 'var(--shadow-sm)',
               }}>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ backgroundColor: 'var(--color-ink-black)', color: 'var(--color-factory-yellow)', padding: '2px 8px', fontSize: '1rem' }}>2</span>
-                  SHIPPING DISPATCH DESTINATION
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 500, marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{
+                    backgroundColor: 'var(--color-accent)',
+                    color: 'white',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                  }}>
+                    2
+                  </span>
+                  Delivery Address
                 </h3>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  <div className="form-group" style={{ gridColumn: 'span 2' }}>
-                    <label className="form-label">Street Address & Flat / House No.</label>
+                <div className="form-row-2col">
+                  <div className="form-group" style={{ gridColumn: '1 / -1' }}>
+                    <label className="form-label">Street Address & Flat / Building</label>
                     <input 
                       type="text" 
                       name="street" 
@@ -243,39 +273,61 @@ export const Checkout = ({ onToast }) => {
 
               {/* Step 3: Payment Method */}
               <div style={{
-                backgroundColor: 'var(--color-off-white)',
-                border: 'var(--border-thick)',
-                padding: 'var(--space-lg)',
-                boxShadow: 'var(--shadow-flat)'
+                backgroundColor: 'var(--color-surface)',
+                border: '1px solid var(--color-border)',
+                borderRadius: 'var(--radius-xl)',
+                padding: 'var(--space-xl)',
+                boxShadow: 'var(--shadow-sm)',
               }}>
-                <h3 style={{ fontSize: '1.4rem', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ backgroundColor: 'var(--color-ink-black)', color: 'var(--color-factory-yellow)', padding: '2px 8px', fontSize: '1rem' }}>3</span>
-                  SELECT PAYMENT METHOD
+                <h3 style={{ fontSize: '1.15rem', fontWeight: 500, marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <span style={{
+                    backgroundColor: 'var(--color-accent)',
+                    color: 'white',
+                    width: '24px',
+                    height: '24px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                  }}>
+                    3
+                  </span>
+                  Payment Method
                 </h3>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                  {['UPI', 'COD', 'Card', 'NetBanking'].map((method) => {
-                    const isSel = formData.paymentMethod === method;
+                <div className="form-row-2col" style={{ gap: '12px' }}>
+                  {[
+                    { id: 'UPI', label: 'Instant UPI (GPay / PhonePe / Paytm)' },
+                    { id: 'COD', label: 'Cash on Delivery (+₹0)' },
+                    { id: 'Card', label: 'Credit or Debit Card' },
+                    { id: 'NetBanking', label: 'Net Banking' }
+                  ].map((method) => {
+                    const isSel = formData.paymentMethod === method.id;
                     return (
                       <button
-                        key={method}
+                        key={method.id}
                         type="button"
-                        onClick={() => setFormData(prev => ({ ...prev, paymentMethod: method }))}
+                        onClick={() => setFormData(prev => ({ ...prev, paymentMethod: method.id }))}
                         style={{
-                          padding: '14px',
-                          border: isSel ? '2px solid var(--color-ink-black)' : '1px solid var(--color-hairline)',
-                          backgroundColor: isSel ? 'var(--color-factory-yellow)' : 'white',
-                          fontFamily: 'JetBrains Mono',
-                          fontSize: '0.9rem',
-                          fontWeight: 800,
+                          padding: '14px 16px',
+                          border: isSel ? '1.5px solid var(--color-accent)' : '1px solid var(--color-border)',
+                          backgroundColor: isSel ? 'var(--color-accent-dim)' : 'var(--color-surface)',
+                          borderRadius: 'var(--radius-lg)',
+                          fontSize: '0.88rem',
+                          fontWeight: isSel ? 600 : 400,
                           textAlign: 'left',
                           display: 'flex',
                           alignItems: 'center',
-                          justifyContent: 'space-between'
+                          justifyContent: 'space-between',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                          color: 'var(--color-text)',
                         }}
                       >
-                        <span>{method === 'UPI' ? '⚡ Instant UPI (GPay / PhonePe)' : method === 'COD' ? '💵 Cash on Delivery (+₹0)' : method === 'Card' ? '💳 Credit / Debit Card' : '🏦 Net Banking'}</span>
-                        {isSel && <CheckCircle2 size={16} color="#141414" />}
+                        <span>{method.label}</span>
+                        {isSel && <CheckCircle2 size={18} style={{ color: 'var(--color-accent)' }} />}
                       </button>
                     );
                   })}
@@ -285,52 +337,54 @@ export const Checkout = ({ onToast }) => {
 
             {/* Right Summary Column */}
             <div style={{
-              backgroundColor: 'var(--color-off-white)',
-              border: 'var(--border-thick)',
-              padding: 'var(--space-lg)',
-              boxShadow: 'var(--shadow-flat)',
+              backgroundColor: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-xl)',
+              padding: 'var(--space-xl)',
+              boxShadow: 'var(--shadow-sm)',
               position: 'sticky',
               top: '90px'
             }}>
-              <h3 style={{ fontSize: '1.4rem', marginBottom: '16px', borderBottom: 'var(--border-thick)', paddingBottom: '8px' }}>
-                ORDER MANIFEST ({cartItems.length})
+              <h3 style={{ fontSize: '1.15rem', fontWeight: 500, marginBottom: '16px', borderBottom: '1px solid var(--color-border)', paddingBottom: '12px' }}>
+                Order Summary ({cartItems.length} items)
               </h3>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '280px', overflowY: 'auto', marginBottom: '16px' }}>
                 {cartItems.map((item, idx) => (
-                  <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', fontFamily: 'JetBrains Mono' }}>
+                  <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
                     <div>
-                      <div style={{ fontWeight: 800 }}>{item.product.name}</div>
-                      <div style={{ color: 'var(--color-gray-subtle)', fontSize: '0.75rem' }}>
-                        SIZE: {item.size} | QTY: {item.qty}
+                      <div style={{ fontWeight: 500, color: 'var(--color-text)' }}>{item.product.name}</div>
+                      <div style={{ color: 'var(--color-text-muted)', fontSize: '0.75rem', marginTop: '2px' }}>
+                        Size: {item.size} · Qty: {item.qty}
                       </div>
                     </div>
-                    <div style={{ fontWeight: 800 }}>
+                    <div style={{ fontWeight: 600, color: 'var(--color-text)' }}>
                       {formatINR(item.product.price * item.qty)}
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div style={{ borderTop: 'var(--border-dashed)', paddingTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px', fontFamily: 'JetBrains Mono', fontSize: '0.85rem' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '14px', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.88rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--color-text-muted)' }}>
                   <span>Subtotal</span>
                   <span>{formatINR(subtotal)}</span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--color-text-muted)' }}>
                   <span>Express Shipping</span>
-                  <span>{shippingFee === 0 ? 'FREE' : formatINR(shippingFee)}</span>
+                  <span>{shippingFee === 0 ? 'Free' : formatINR(shippingFee)}</span>
                 </div>
                 <div style={{
                   display: 'flex',
                   justifyContent: 'space-between',
-                  fontSize: '1.2rem',
-                  fontWeight: 800,
-                  borderTop: 'var(--border-thick)',
-                  paddingTop: '12px',
-                  marginTop: '4px'
+                  fontSize: '1.15rem',
+                  fontWeight: 600,
+                  borderTop: '1px solid var(--color-border)',
+                  paddingTop: '14px',
+                  marginTop: '6px',
+                  color: 'var(--color-text)'
                 }}>
-                  <span>TOTAL AMOUNT</span>
+                  <span>Total</span>
                   <span>{formatINR(totalAmount)}</span>
                 </div>
               </div>
@@ -339,24 +393,23 @@ export const Checkout = ({ onToast }) => {
                 type="submit" 
                 disabled={submitting} 
                 className="btn-primary" 
-                style={{ width: '100%', marginTop: '24px' }}
+                style={{ width: '100%', marginTop: '20px', height: '48px', justifyContent: 'center' }}
                 id="place-order-btn"
               >
-                {submitting ? 'STAGING ORDER...' : `CONFIRM ORDER (${formatINR(totalAmount)})`} <ArrowRight size={18} />
+                {submitting ? 'Submitting order…' : `Confirm Order (${formatINR(totalAmount)})`} <ArrowRight size={18} />
               </button>
 
               <div style={{
                 marginTop: '16px',
                 textAlign: 'center',
-                fontFamily: 'JetBrains Mono',
-                fontSize: '0.7rem',
-                color: 'var(--color-rust)',
+                fontSize: '0.75rem',
+                color: 'var(--color-text-muted)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '4px'
+                gap: '6px'
               }}>
-                <ShieldCheck size={14} /> 256-BIT ENCRYPTED FACTORY CHECKOUT
+                <ShieldCheck size={15} style={{ color: 'var(--color-accent)' }} /> 256-bit encrypted secure checkout
               </div>
             </div>
           </div>

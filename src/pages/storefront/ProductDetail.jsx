@@ -9,7 +9,8 @@ import {
   Check, 
   ChevronDown, 
   ChevronUp, 
-  Heart 
+  Heart,
+  ArrowRight
 } from 'lucide-react';
 import { fetchProductById } from '../../api/products.js';
 import { CatMascot } from '../../assets/CatMascot.jsx';
@@ -60,8 +61,8 @@ export const ProductDetail = ({ onToast }) => {
 
   if (loading) {
     return (
-      <div style={{ textAlign: 'center', padding: '100px 0', fontFamily: 'JetBrains Mono' }}>
-        FETCHING GARMENT SPECIFICATIONS & QC SHEET...
+      <div style={{ textAlign: 'center', padding: '100px 0', color: 'var(--color-text-muted)' }}>
+        Loading garment specifications…
       </div>
     );
   }
@@ -69,9 +70,9 @@ export const ProductDetail = ({ onToast }) => {
   if (error || !product) {
     return (
       <div className="container" style={{ padding: '80px 0', textAlign: 'center' }}>
-        <h2>GARMENT NOT FOUND</h2>
-        <p style={{ fontFamily: 'JetBrains Mono', margin: '16px 0 24px' }}>{error}</p>
-        <Link to="/shop" className="btn-primary">RETURN TO SHOP CATALOG</Link>
+        <h2 style={{ fontWeight: 400, marginBottom: '12px' }}>Product not found</h2>
+        <p style={{ color: 'var(--color-text-muted)', margin: '16px 0 24px' }}>{error}</p>
+        <Link to="/shop" className="btn-primary">Return to catalog</Link>
       </div>
     );
   }
@@ -90,32 +91,44 @@ export const ProductDetail = ({ onToast }) => {
     <div className="product-detail-page" style={{ padding: 'var(--space-2xl) 0' }}>
       <div className="container">
         {/* Breadcrumb Navigation */}
-        <div style={{ fontFamily: 'JetBrains Mono', fontSize: '0.8rem', color: 'var(--color-gray-subtle)', marginBottom: 'var(--space-lg)' }}>
-          <Link to="/">HOME</Link> / <Link to="/shop">SHOP</Link> / <Link to={`/shop?category=${product.category}`}>{product.category.toUpperCase()}</Link> / <span style={{ color: 'var(--color-ink-black)', fontWeight: 700 }}>{product.name}</span>
+        <div style={{
+          fontSize: '0.82rem',
+          color: 'var(--color-text-muted)',
+          marginBottom: 'var(--space-xl)',
+          display: 'flex',
+          gap: '8px',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+        }}>
+          <Link to="/" style={{ color: 'var(--color-text-muted)' }}>Home</Link>
+          <span>/</span>
+          <Link to="/shop" style={{ color: 'var(--color-text-muted)' }}>Shop</Link>
+          <span>/</span>
+          <Link to={`/shop?category=${product.category}`} style={{ color: 'var(--color-text-muted)' }}>
+            {product.category}
+          </Link>
+          <span>/</span>
+          <span style={{ color: 'var(--color-text)', fontWeight: 500 }}>{product.name}</span>
         </div>
 
-        {/* Detail Main Layout */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: 'var(--space-3xl)',
-          alignItems: 'start'
-        }}>
+        {/* Detail Main Layout (Responsive: 2-column desktop, 1-column mobile) */}
+        <div className="product-detail-layout">
           {/* Left Visual Presentation Frame */}
           <div>
             <div style={{
-              backgroundColor: product.cardBgColor || '#EAE5DB',
-              border: 'var(--border-thick)',
+              backgroundColor: product.cardBgColor || 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-xl)',
               padding: hasUploadedImages ? '0' : 'var(--space-3xl)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
               position: 'relative',
-              minHeight: '480px',
-              height: '480px',
-              boxShadow: 'var(--shadow-flat)',
-              overflow: 'hidden'
+              minHeight: '380px',
+              height: '460px',
+              boxShadow: 'var(--shadow-sm)',
+              overflow: 'hidden',
             }}>
               {/* Uploaded Image or Fallback SVG Mascot */}
               {hasUploadedImages ? (
@@ -125,15 +138,15 @@ export const ProductDetail = ({ onToast }) => {
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover'
+                    objectFit: 'cover',
                   }}
                 />
               ) : (
                 <CatMascot 
-                  width={260} 
-                  height={260} 
-                  fillColor={selectedColor?.bgStyle || product.printColor || '#141414'} 
-                  accentColor="#E8B923"
+                  width={240} 
+                  height={240} 
+                  fillColor={selectedColor?.bgStyle || product.printColor || 'var(--color-text)'} 
+                  accentColor="var(--color-accent)"
                   expression="cool"
                   showHardhat={product.category === 'Outerwear'}
                 />
@@ -143,21 +156,24 @@ export const ProductDetail = ({ onToast }) => {
                 position: 'absolute',
                 bottom: '12px',
                 right: '16px',
-                fontFamily: 'JetBrains Mono',
-                fontSize: '0.7rem',
-                color: 'var(--color-rust)',
-                fontWeight: 700,
-                backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                padding: '2px 6px',
-                zIndex: 3
+                fontSize: '0.72rem',
+                color: 'var(--color-accent)',
+                fontWeight: 600,
+                letterSpacing: '0.06em',
+                backgroundColor: 'rgba(255, 255, 255, 0.92)',
+                backdropFilter: 'blur(4px)',
+                padding: '4px 10px',
+                borderRadius: 'var(--radius-pill)',
+                zIndex: 3,
+                boxShadow: 'var(--shadow-xs)',
               }}>
-                SPECIFICATION // {product.qcStatus || 'QC PASSED — STAMPED'}
+                {product.qcStatus || 'QC PASSED · STAMPED'}
               </div>
             </div>
 
             {/* Gallery Thumbnails */}
             {hasUploadedImages && product.images.length > 1 && (
-              <div style={{ display: 'flex', gap: '10px', marginTop: '12px' }}>
+              <div style={{ display: 'flex', gap: '10px', marginTop: '12px', flexWrap: 'wrap' }}>
                 {product.images.map((img, idx) => {
                   const isActive = activeImageIndex === idx;
                   return (
@@ -165,13 +181,15 @@ export const ProductDetail = ({ onToast }) => {
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
                       style={{
-                        width: '70px',
-                        height: '70px',
-                        border: isActive ? '3px solid var(--color-factory-yellow)' : '1px solid var(--color-hairline)',
-                        boxShadow: isActive ? 'var(--shadow-flat)' : 'none',
+                        width: '64px',
+                        height: '64px',
+                        border: isActive ? '2px solid var(--color-accent)' : '1px solid var(--color-border)',
+                        borderRadius: 'var(--radius-md)',
+                        boxShadow: isActive ? 'var(--shadow-sm)' : 'none',
                         padding: 0,
                         overflow: 'hidden',
-                        backgroundColor: '#000'
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease',
                       }}
                     >
                       <img src={img} alt={`Thumb ${idx}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -182,21 +200,23 @@ export const ProductDetail = ({ onToast }) => {
             )}
           </div>
 
-            {/* Right Info & Buying Panel */}
+          {/* Right Info & Buying Panel */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
             <div>
-              <span className="batch-spec" style={{ fontSize: '0.8rem' }}>{product.category}</span>
-              <h1 style={{ fontSize: '2.5rem', marginTop: '4px' }}>{product.name}</h1>
+              <span className="subtitle" style={{ fontSize: '0.78rem' }}>{product.category}</span>
+              <h1 style={{ fontSize: 'clamp(1.8rem, 4vw, 2.4rem)', fontWeight: 300, letterSpacing: '0.03em', marginTop: '4px' }}>
+                {product.name}
+              </h1>
 
               {/* Rating */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
-                <div style={{ display: 'flex', gap: '2px', color: 'var(--color-factory-yellow)' }}>
+                <div style={{ display: 'flex', gap: '2px', color: '#D4A373' }}>
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={16} fill="var(--color-factory-yellow)" stroke="none" />
+                    <Star key={i} size={15} fill="#D4A373" stroke="none" />
                   ))}
                 </div>
-                <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.85rem', fontWeight: 700 }}>
-                  {product.rating || 4.9} ({product.reviewCount || 42} VERIFIED REVIEWS)
+                <span style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)' }}>
+                  {product.rating || 4.9} ({product.reviewCount || 42} verified reviews)
                 </span>
               </div>
             </div>
@@ -206,36 +226,44 @@ export const ProductDetail = ({ onToast }) => {
               display: 'flex',
               alignItems: 'baseline',
               gap: '12px',
-              padding: '12px 16px',
-              backgroundColor: 'var(--color-off-white)',
-              border: 'var(--border-thick)'
+              padding: '14px 18px',
+              backgroundColor: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-lg)',
             }}>
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: '1.8rem', fontWeight: 800 }}>
+              <span style={{ fontSize: '1.6rem', fontWeight: 600, color: 'var(--color-text)' }}>
                 {formatINR(product.price)}
               </span>
               {product.mrp > product.price && (
                 <>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: '1.1rem', textDecoration: 'line-through', color: 'var(--color-gray-subtle)' }}>
+                  <span style={{ fontSize: '1rem', textDecoration: 'line-through', color: 'var(--color-text-faint)' }}>
                     {formatINR(product.mrp)}
                   </span>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.85rem', color: 'var(--color-rust)', fontWeight: 800 }}>
-                    SAVE {discountPercent}%
+                  <span style={{
+                    fontSize: '0.75rem',
+                    color: 'var(--color-accent)',
+                    backgroundColor: 'var(--color-accent-dim)',
+                    padding: '2px 8px',
+                    borderRadius: 'var(--radius-pill)',
+                    fontWeight: 600,
+                  }}>
+                    Save {discountPercent}%
                   </span>
                 </>
               )}
             </div>
 
-            <p style={{ fontFamily: 'Archivo', fontSize: '0.95rem', color: '#333' }}>
+            <p style={{ fontSize: '0.95rem', color: 'var(--color-text-muted)', lineHeight: 1.65 }}>
               {product.description}
             </p>
 
             {/* Color Swatches */}
             {product.colors && product.colors.length > 0 && (
               <div>
-                <label className="form-label" style={{ marginBottom: '6px' }}>
-                  COLOR SHADE: <strong>{selectedColor?.name || 'Standard'}</strong>
+                <label className="form-label" style={{ marginBottom: '8px' }}>
+                  Color Shade: <strong style={{ color: 'var(--color-text)' }}>{selectedColor?.name || 'Standard'}</strong>
                 </label>
-                <div style={{ display: 'flex', gap: '10px' }}>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
                   {product.colors.map((col, idx) => {
                     const isSel = selectedColor?.name === col.name;
                     return (
@@ -246,15 +274,18 @@ export const ProductDetail = ({ onToast }) => {
                           display: 'flex',
                           alignItems: 'center',
                           gap: '6px',
-                          padding: '6px 12px',
-                          border: isSel ? '2px solid var(--color-ink-black)' : '1px solid var(--color-hairline)',
-                          backgroundColor: isSel ? 'var(--color-factory-yellow)' : 'white',
-                          fontFamily: 'JetBrains Mono',
-                          fontSize: '0.75rem',
-                          fontWeight: 700
+                          padding: '6px 14px',
+                          border: isSel ? '1.5px solid var(--color-accent)' : '1px solid var(--color-border)',
+                          backgroundColor: isSel ? 'var(--color-accent-dim)' : 'var(--color-surface)',
+                          borderRadius: 'var(--radius-pill)',
+                          fontSize: '0.82rem',
+                          fontWeight: isSel ? 600 : 400,
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                          color: 'var(--color-text)',
                         }}
                       >
-                        <span style={{ width: 14, height: 14, borderRadius: '50%', backgroundColor: col.hex, border: '1px solid #141414' }} />
+                        <span style={{ width: 12, height: 12, borderRadius: '50%', backgroundColor: col.hex, border: '1px solid rgba(0,0,0,0.1)' }} />
                         {col.name}
                       </button>
                     );
@@ -266,14 +297,14 @@ export const ProductDetail = ({ onToast }) => {
             {/* Size Selector */}
             {product.sizes && product.sizes.length > 0 && (
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                  <label className="form-label">SELECT GARMENT SIZE:</label>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: '0.7rem', color: 'var(--color-rust)', cursor: 'pointer' }}>
-                    📐 OVERSIZED FIT GUIDE
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                  <label className="form-label" style={{ margin: 0 }}>Select Size</label>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--color-accent)', cursor: 'pointer', fontWeight: 500 }}>
+                    Oversized Fit Guide
                   </span>
                 </div>
 
-                <div style={{ display: 'flex', gap: '8px' }}>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
                   {product.sizes.map((sz) => {
                     const isSel = selectedSize === sz;
                     return (
@@ -281,17 +312,19 @@ export const ProductDetail = ({ onToast }) => {
                         key={sz}
                         onClick={() => setSelectedSize(sz)}
                         style={{
-                          width: '48px',
-                          height: '44px',
+                          width: '46px',
+                          height: '42px',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontFamily: 'JetBrains Mono',
-                          fontSize: '0.9rem',
-                          fontWeight: 800,
-                          border: isSel ? '2px solid var(--color-ink-black)' : '1px solid var(--color-hairline)',
-                          backgroundColor: isSel ? 'var(--color-factory-yellow)' : 'white',
-                          boxShadow: isSel ? '2px 2px 0px var(--color-ink-black)' : 'none'
+                          fontSize: '0.88rem',
+                          fontWeight: isSel ? 600 : 400,
+                          border: isSel ? '1.5px solid var(--color-accent)' : '1px solid var(--color-border)',
+                          backgroundColor: isSel ? 'var(--color-accent)' : 'var(--color-surface)',
+                          color: isSel ? 'white' : 'var(--color-text)',
+                          borderRadius: 'var(--radius-md)',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
                         }}
                       >
                         {sz}
@@ -303,26 +336,26 @@ export const ProductDetail = ({ onToast }) => {
             )}
 
             {/* Quantity Stepper & Add to Cart Button */}
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginTop: '12px' }}>
-              <div className="cart-qty-stepper" style={{ height: '48px' }}>
-                <button onClick={() => setQty(Math.max(1, qty - 1))} style={{ width: '36px', height: '48px', fontSize: '1.2rem' }}>-</button>
-                <span style={{ fontSize: '1rem', padding: '0 16px' }}>{qty}</span>
-                <button onClick={() => setQty(qty + 1)} style={{ width: '36px', height: '48px', fontSize: '1.2rem' }}>+</button>
+            <div style={{ display: 'flex', gap: '14px', alignItems: 'center', marginTop: '8px', flexWrap: 'wrap' }}>
+              <div className="cart-qty-stepper" style={{ height: '46px' }}>
+                <button onClick={() => setQty(Math.max(1, qty - 1))} style={{ width: '36px', height: '46px', fontSize: '1.2rem' }}>-</button>
+                <span style={{ fontSize: '0.95rem', padding: '0 16px' }}>{qty}</span>
+                <button onClick={() => setQty(qty + 1)} style={{ width: '36px', height: '46px', fontSize: '1.2rem' }}>+</button>
               </div>
 
               <button 
                 className="btn-primary" 
                 onClick={handleAddToCart}
-                style={{ flexGrow: 1, height: '48px', fontSize: '1rem' }}
+                style={{ flexGrow: 1, height: '46px', fontSize: '0.92rem', minWidth: '200px' }}
                 id="pdp-add-to-cart-btn"
               >
                 {addedToast ? (
                   <>
-                    <Check size={18} /> STAGED TO CART!
+                    <Check size={18} /> Added to Cart!
                   </>
                 ) : (
                   <>
-                    <ShoppingBag size={18} /> ADD TO STAGE CART
+                    <ShoppingBag size={18} /> Add to Cart
                   </>
                 )}
               </button>
@@ -332,51 +365,52 @@ export const ProductDetail = ({ onToast }) => {
             <div style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '8px',
+              gap: '10px',
               padding: '16px',
-              backgroundColor: 'var(--color-off-white)',
-              border: 'var(--border-thick)',
+              backgroundColor: 'var(--color-surface)',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-lg)',
               marginTop: '12px',
-              fontFamily: 'JetBrains Mono',
-              fontSize: '0.75rem'
+              fontSize: '0.82rem',
+              color: 'var(--color-text-muted)',
             }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Truck size={16} color="var(--color-rust)" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Truck size={16} style={{ color: 'var(--color-accent)' }} />
                 <span>Express Dispatch: Order within 4 hrs for same-day dispatch.</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <RotateCcw size={16} color="var(--color-rust)" />
-                <span>7-Day No-Hassle Exchange & Return Guarantee.</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <RotateCcw size={16} style={{ color: 'var(--color-accent)' }} />
+                <span>7-Day Hassle-Free Exchange & Return Policy.</span>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <ShieldCheck size={16} color="var(--color-rust)" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <ShieldCheck size={16} style={{ color: 'var(--color-accent)' }} />
                 <span>100% Quality Inspected before dispatch.</span>
               </div>
             </div>
 
             {/* Spec Accordions */}
-            <div style={{ marginTop: '16px', borderTop: 'var(--border-thick)' }}>
+            <div style={{ marginTop: '12px', borderTop: '1px solid var(--color-border)' }}>
               <div 
                 onClick={() => setOpenAccordion(openAccordion === 'fabric' ? '' : 'fabric')}
                 style={{
-                  padding: '12px 0',
-                  borderBottom: 'var(--border-hairline)',
+                  padding: '14px 0',
+                  borderBottom: '1px solid var(--color-border)',
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   cursor: 'pointer',
-                  fontFamily: 'JetBrains Mono',
-                  fontWeight: 800,
-                  fontSize: '0.85rem'
+                  fontWeight: 500,
+                  fontSize: '0.88rem',
+                  color: 'var(--color-text)',
                 }}
               >
-                <span>FABRIC & CRAFTSMANSHIP SPECS</span>
+                <span>Fabric & Craftsmanship Specifications</span>
                 {openAccordion === 'fabric' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
               </div>
               {openAccordion === 'fabric' && (
-                <div style={{ padding: '12px 0', fontSize: '0.9rem', color: '#444' }}>
-                  <p><strong>Fabric:</strong> {product.fabric}</p>
-                  <p style={{ marginTop: '4px' }}><strong>Fit Silhouette:</strong> {product.fit}</p>
+                <div style={{ padding: '14px 0', fontSize: '0.88rem', color: 'var(--color-text-muted)', lineHeight: 1.65 }}>
+                  <p><strong style={{ color: 'var(--color-text)' }}>Fabric:</strong> {product.fabric}</p>
+                  <p style={{ marginTop: '6px' }}><strong style={{ color: 'var(--color-text)' }}>Fit Silhouette:</strong> {product.fit}</p>
                   {product.details && product.details.length > 0 && (
                     <ul style={{ paddingLeft: '20px', marginTop: '8px' }}>
                       {product.details.map((d, i) => <li key={i}>{d}</li>)}
@@ -390,11 +424,11 @@ export const ProductDetail = ({ onToast }) => {
 
         {/* Related Products Grid */}
         {relatedProducts.length > 0 && (
-          <section style={{ marginTop: 'var(--space-3xl)', paddingTop: 'var(--space-2xl)', borderTop: 'var(--border-thick)' }}>
+          <section style={{ marginTop: 'var(--space-3xl)', paddingTop: 'var(--space-2xl)', borderTop: '1px solid var(--color-border)' }}>
             <div className="section-header">
               <div>
-                <span className="subtitle">CROSS DISPATCH</span>
-                <h2>RELATED FACTORY GARMENTS</h2>
+                <span className="subtitle">Curated</span>
+                <h2>Related Garments</h2>
               </div>
             </div>
 
